@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rendez_vouses', function (Blueprint $table) {
+        Schema::create('rendez_vous', function (Blueprint $table) {
             $table->id();
             $table->date('date');
             $table->date('heure');
+            $table->foreignId('medecin_id')->constrained()->onDelete('cascade');
+            $table->foreignId('patient_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
-
+ 
     /**
      * Reverse the migrations.
      */

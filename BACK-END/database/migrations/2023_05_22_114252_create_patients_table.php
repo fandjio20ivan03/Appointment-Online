@@ -14,16 +14,13 @@ return new class extends Migration
 
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('personne_id');
+            $table->foreignId('personne_id')->constrained()->onDelete('cascade');
             $table->timestamps();
-
-            $table->unique(['personne_id']);
-            $table->foreign('personne_id')->references('id')->on('personnes')->onDelete('cascade');
         });
 
 
     }
-
+ 
     /**
      * Reverse the migrations.
      */
