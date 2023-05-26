@@ -8,7 +8,7 @@ import { PagePatientComponent } from './pages/page-patient/page-patient.componen
 import { PageStatistiqueComponent } from './pages/page-statistique/page-statistique.component';
 import { MenuComponent } from './composants/menu/menu.component';
 import { PageMedecinComponent } from './pages/page-medecin/page-medecin.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -23,7 +23,8 @@ import { PageMedecinComponent } from './pages/page-medecin/page-medecin.componen
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

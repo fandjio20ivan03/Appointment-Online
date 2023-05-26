@@ -30,19 +30,19 @@
         <th scope="col">Ville</th>
         <th scope="col">Numero de telephone</th>
         <th scope="col">Adresse Email</th>
-        <th scope="col">Adresse Email</th>
+        <th scope="col">Numero de telephone</th>
         <th scope="col">Action a effectuer</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>1</td>
-        <td>random</td>
-        <td>data</td>
-        <td>placeholder</td>
-        <td>text</td>
-        <td>data</td>
-        <td>placeholder</td>
+      <tr *ngFor="let patient of patients">
+        <td>{{ patient.id }}</td>
+        <td>{{ patient.pat_nom }}</td>
+        <td>{{ patient.pat_prenom }}</td>
+        <td>{{ patient.pat_ville }}</td>
+        <td>{{ patient.pat_date_Nais }}</td>
+        <td>{{ patient.pat_email }}</td>
+        <td>{{ patient.pat_tel }}</td>
         <td class="col-md-3">
           <button type="button" class="btn btn-outline-info">Infos</button>
           &nbsp;
