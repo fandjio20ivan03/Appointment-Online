@@ -10,9 +10,16 @@ class PatientController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function afficher_patients()
+    {
+        $patients = Patient::all();
+        return response()->json($patients,200);
+    }
+
     public function index()
     {
-        //
+
     }
 
     /**
