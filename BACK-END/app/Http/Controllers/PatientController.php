@@ -12,7 +12,8 @@ class PatientController extends Controller
      */
     public function index()
     {
-        //
+        //je retourne ici tous les patients de notre table avec un response json pour consommer en api en front-end
+        return response()->json(Patient::all(), 200);
     }
 
     /**
