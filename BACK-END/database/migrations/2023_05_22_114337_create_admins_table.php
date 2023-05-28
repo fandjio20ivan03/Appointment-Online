@@ -13,11 +13,16 @@ return new class extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('personne_id')->constrained()->onDelete('cascade');
+            $table->string('adm_nom');
+            $table->string('adm_prenom');
+            $table->string('adm_ville');
+            $table->string('adm_dateNais');
+            $table->string('adm_email')->unique();
+            $table->string('adm_tel');
             $table->timestamps();
         });
     }
- 
+
     /**
      * Reverse the migrations.
      */
