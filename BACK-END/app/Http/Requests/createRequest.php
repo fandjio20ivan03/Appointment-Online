@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class createRequest extends FormRequest
 {
@@ -28,6 +30,30 @@ class createRequest extends FormRequest
              'med_dateNaiss' => 'required|date|before:today',
              'med_email'=> 'required|email|unique:medecins,email',
              'med_tel'=>'required|min:9|max:9'
+        ];
+    }
+
+    public function failedValidation(Validator $validator) {
+        throw new HttpResponseException(response()->json([
+            "status_code" => 422,
+            "message"=>"Erreur de Validation",
+            "errorList" => $validator->errors()
+        ]));
+    }
+
+    public function messages()
+    {
+        return[
+            "med_nom.required" => "Veillez Entrer votre nom",
+            "med_nom.string" => "Le nom ne doit pas commencer par un chiffre",
+            "med_nom.max" => "Le nom doit faire maximun 100 caracteres",
+
+            "med_prenom.required" => "Veillez Entrer votre prenom",
+            "med_prenom.string" => "Le nom ne doit pas commencer par un chiffre",
+            "med_prenom.max" => "Le nom doit faire maximum 100 caracteres",
+
+            'med_ville.required' => 'veillez selectionner votre ville parmi celles proposees',
+            'med_ville.in'
         ];
     }
 }

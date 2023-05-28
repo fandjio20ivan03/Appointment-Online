@@ -17,9 +17,10 @@ return new class extends Migration
             $table->string('med_prenom');
             $table->string('med_ville');
             $table->string('med_dateNais');
-            $table->string('med_email')->unique();
             $table->string('med_tel');
 
+            $table->foreignId('specialite_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

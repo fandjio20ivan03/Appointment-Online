@@ -17,13 +17,12 @@ return new class extends Migration
             $table->string('pat_nom');
             $table->string('pat_prenom');
             $table->string('pat_ville');
-            $table->string('pat_dateNais');
-            $table->string('pat_email')->unique();
-            $table->string('pat_tel');
+            $table->date('pat_dateNais');
+            $table->string('pat_tel')->nullable();
+
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
-
-
     }
 
     /**

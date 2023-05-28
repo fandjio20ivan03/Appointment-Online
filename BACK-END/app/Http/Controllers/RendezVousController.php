@@ -10,10 +10,25 @@ class RendezVousController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
+    //1er facon de faire
+    // public function index()
+    // {
+    //     $rdv = Rendez_vous::all();
+    //     return response()->json([
+    //         'message'=>"La liste des rendez_vous",
+    //         'data' => $rdv
+    //     ]);
+    // }
+
+    // //2 facon de faire
+    // public function index2(Rendez_vous $rdv) {
+
+    //     return response()->json([
+    //         'message'=>"La liste des rendez_vous",
+    //         'data' => $rdv
+    //     ]);
+    // }
+    // }
 
     /**
      * Show the form for creating a new resource.

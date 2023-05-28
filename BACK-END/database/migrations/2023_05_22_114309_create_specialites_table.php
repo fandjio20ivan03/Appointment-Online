@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('specialites', function (Blueprint $table) {
             $table->id();
             $table->string('spec_nom');
-            $table->string('spec_categories');
-            $table->foreignId('medecin_id')->constrained()->onDelete('cascade');
+            // $table->string('spec_categories');
             $table->timestamps();
         });
+        // $table->foreignId('medecin_id')->constrained()->onDelete('cascade');
     }
- 
+
     /**
      * Reverse the migrations.
      */

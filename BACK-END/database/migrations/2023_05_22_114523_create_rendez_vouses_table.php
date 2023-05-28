@@ -14,13 +14,16 @@ return new class extends Migration
         Schema::create('rendez_vous', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->date('heure');
+            $table->date('heure_debut');
+            $table->date('heure_fin');
+
+            $table->enum('role', ['en attente', 'annuler', ''])->default('en attente');
             $table->foreignId('medecin_id')->constrained()->onDelete('cascade');
             $table->foreignId('patient_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
- 
+
     /**
      * Reverse the migrations.
      */
