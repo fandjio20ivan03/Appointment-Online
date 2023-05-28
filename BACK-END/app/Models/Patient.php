@@ -10,7 +10,9 @@ class Patient extends Model
     use HasFactory;
 
     public $timestamps = false;
-      
+
+    // protected $table = 'patients';
+
     protected $fillable = [
         'pers_nom',
         'pers_prenom',

@@ -29,7 +29,8 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //fonction me permettant de sauvegarde les informations envoyer par le patient dans la base de donnees
+        
     }
 
     /**

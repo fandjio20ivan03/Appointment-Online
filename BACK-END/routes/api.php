@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('stevane', [MedecinController::class, 'index']);
+Route::post('medecin/create', [MedecinController::class, 'create']);
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
