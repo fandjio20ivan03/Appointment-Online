@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('pat_nom');
             $table->string('pat_prenom');
             $table->string('pat_ville');
-            $table->string('pat_dateNais');
+            $table->date('pat_dateNais');
             $table->string('pat_email')->unique();
-            $table->string('pat_tel');
+            $table->string('pat_tel')->unique();
             $table->timestamps();
         });
 

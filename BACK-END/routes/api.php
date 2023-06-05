@@ -1,8 +1,12 @@
 <?php
 
+<<<<<<< HEAD
 use App\Http\Controllers\MedecinController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CalendrierController;
+=======
+use App\Http\Controllers\PatientController;
+>>>>>>> 8968fb643cba48df8bde0062408921e04ad6b75e
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PatientController;
@@ -24,6 +28,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
+<<<<<<< HEAD
 // CRUD  sur le Calendrier
 
 Route::prefix('calendrier')->name('calendrier.')->group(function (){
@@ -44,3 +49,25 @@ Route::prefix('calendrier')->name('calendrier.')->group(function (){
     Route::delete('/delete/{id}',[CalendrierController::class, 'destroy'])->name('destroy');
 
 });
+=======
+Route::prefix('patient')->name('patient.')->group(function () {
+    //afficher tous les patients
+    Route::get('/', [PatientController::class, 'index'])->name('index');
+
+    //
+    // Route::get('/create', [StudentController::class, 'create'])->name('create');
+
+    //enregistree les informations d'un patient dans la base de donnee
+    Route::post('/', [PatientController::class, 'store'])->name('store');
+
+    //modifier les informations d'un patient dans la base de donnee
+    Route::put('/update/{id}', [PatientController::class, 'update'])->name('update');
+
+    //
+    Route::get('/show/{id}', [PatientController::class, 'show'])->name('show');
+
+    //supprimer un patient de la base de donnee grace a sont identifiant
+    Route::delete('/delete/{id}', [PatientController::class, 'delete'])->name('delete');
+});
+
+>>>>>>> 8968fb643cba48df8bde0062408921e04ad6b75e
