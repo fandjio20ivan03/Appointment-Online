@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Calendrier;
-use App\Http\Requests\Calendrier\CreateCalendrierRequest;
+use App\Http\Requests\Calendrier\CalendrierRequest;
 
 class CalendrierController extends Controller
 {
@@ -33,7 +33,7 @@ class CalendrierController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CreateCalendrierRequest $request)
+    public function store(CalendrierRequest $request)
     {
         // validation des donnees de la requete
         Calendrier::create($request->all());
@@ -66,7 +66,7 @@ class CalendrierController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(CreateCalendrierRequest $request, $id)
+    public function update(CalendrierRequest $request, $id)
     {
         $date = Calendrier::find($id);
         if(empty($date))
