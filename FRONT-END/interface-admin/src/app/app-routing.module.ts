@@ -23,11 +23,17 @@ const routes: Routes = [
       },
       {
           path: 'patients',
-          component: PagePatientComponent
+          component: PagePatientComponent,
+          data: {
+            origin:'Patients'
+          }
       },
       {
         path:'medecins',
-        component: PageMedecinComponent
+        component: PageMedecinComponent,
+        data: {
+          origin: 'Medecins'
+        }
       }
     ]
   }

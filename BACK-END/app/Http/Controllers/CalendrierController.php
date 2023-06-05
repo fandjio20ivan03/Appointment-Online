@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Calendrier;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Carbon;
 class CalendrierController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
-    {
+    {   // recuperation des dates en classement par ordre croissant
         // la verification de l'heure de debut et celui de fin se fait en front
         $calendriers = Calendrier::orderBy('date')->take(7)->get();
 
@@ -36,19 +37,27 @@ class CalendrierController extends Controller
      */
     public function store(Request $request)
     {
+        // validation des donnees de la requete
 
-        $validated = $request->validate([
+        $validator = Validator::make($request->all(),
+        [
             'date' => 'date | required',
-            'heure_debut' => 'required',
-            'heure_fin' => 'required'
+            'heure_debut' => 'required | before:'.$request->input('heure_fin'),
+            'heure_fin' => 'required',
+        ],
+        [
+            'required' => 'l\'attribut :attrubute est requis.',
+            'date' => 'l\'attribut :attribute doit etre valide.',
         ]);
 
-        if($validated)
+        if($validator->fails())
         {
-            Calendrier::create($validated);
-            return response()->json(["message" => "date ajoutés avec succes"],200);
+            return response()->json(["message" => "erreur de validation des donnees"],201); // $validator en param de la mothode json pour recupere les messages appropries
         }
-        return response()->json(["message" => "erreur de validation des donnees"],201);
+
+        Calendrier::create($request->all());
+        return response()->json(["message" => "date ajoutés avec succes"],200);
+
     }
 
     /**
@@ -56,14 +65,12 @@ class CalendrierController extends Controller
      */
     public function show($id)
     {
-
-        $calendrier = Calendrier::findOrFail($id);
-
-        if(empty($calendrier))
+        $date = Calendrier::find($id);
+        if(empty($date))
         {
             return response()->json(["message" => "date introuvable"], 404);
         }
-        return response()->json($calendrier,200);
+        return response()->json($date,200);
 
     }
 
@@ -80,21 +87,32 @@ class CalendrierController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $date = Calendrier::findOrFail($id);
+
+        $date = Calendrier::find($id);
         if(empty($date))
         {
             return reponse()->json(["message" => "date introuvable"],404);
-        }
 
-        $validated = $request->validate([
+        }
+        $validator = Validator::make($request->all(),
+        [
             'date' => 'date | required',
-            'heure_debut' => 'required',
-            'heure_fin' => 'required'
+            'heure_debut' => 'required | before:'.$request->input('heure_fin'),  // $validator en param de la mothode json pour recupere les messages appropries
+            'heure_fin' => 'required',
+        ],
+        [
+            'required' => 'l\'attribut :attrubute est requis.',
+            'date' => 'l\'attribut :attribute doit etre valide.',
         ]);
 
-        $date->update($validated);
+        if($validator->fails())
+        {
+            return response()->json($validator,201);
+        }
+        $date->update($request->all());
         $date->save();
-        return response()->json(["message" => "bonne mise à jour"],200);
+        return response()->json(['message' => 'bonne mise à jour'],200);
+
     }
 
     /**
@@ -102,7 +120,7 @@ class CalendrierController extends Controller
      */
     public function destroy($id)
     {
-        $date = Calendrier::findOrFail($id);
+        $date = Calendrier::find($id);
         if(empty($date))
         {
             return response()->json(["massage" => "date introuvable"],404);

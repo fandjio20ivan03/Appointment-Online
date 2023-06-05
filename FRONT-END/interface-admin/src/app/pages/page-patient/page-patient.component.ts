@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 
 
@@ -9,25 +10,31 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./page-patient.component.scss']
 })
 export class PagePatientComponent implements OnInit{
-
+  origin = '';
   patients:any;
 
-constructor(private dataService: DataService){}
+constructor(private dataService: DataService, private activatedRoute: ActivatedRoute){}
 
 ngOnInit(): void {
   //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
   //Add 'implements OnInit' to the class.
-this.getPatientData();
+
+  this.activatedRoute.data.subscribe( data => {
+  this.origin = data['origin'];
+  });
+
+  this.getPatientData();
 
 }
 getPatientData(){
-
   console.log('listes des patients');
   this.dataService.getData().subscribe(res =>{
     console.log(res);
     this.patients = res;
   })
-
 }
+
+
+
 
 }

@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h1 class="h2">Ensemble des Patients</h1>
+  <h1 class="h2">Ensemble des {{ origin }}</h1>
   <div class="btn-toolbar mb-2 mb-md-0">
     <div class="btn-group me-2">
       <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Share</button> -->
@@ -14,14 +14,13 @@
         <line x1="8" y1="2" x2="8" y2="6"></line>
         <line x1="3" y1="10" x2="21" y2="10"></line>
       </svg>
-      This week
+      Calendrier
     </button>
   </div>
 </div>
-
-
+<br/>
 <div class="table-responsive">
-  <table class="table table-striped table-sm">
+  <table class="table table-striped table-hover table-sm">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -31,7 +30,7 @@
         <th scope="col">Numero de telephone</th>
         <th scope="col">Adresse Email</th>
         <th scope="col">Numero de telephone</th>
-        <th scope="col">Action a effectuer</th>
+        <th scope="col">Action &aacute; effectuer</th>
       </tr>
     </thead>
     <tbody>

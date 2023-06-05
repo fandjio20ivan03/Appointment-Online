@@ -9,9 +9,7 @@ class MedecinController extends Controller
 {
     public function index()
     {
-        // dd('PK');
         $medecins = Medecin::all();
-        echo 'stevane';
         return response()->json([
             "status_code" => 200,
             "status_message"=>"Liste des medecins reccuperer",
