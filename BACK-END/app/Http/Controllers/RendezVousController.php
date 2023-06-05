@@ -38,6 +38,11 @@ class RendezVousController extends Controller
     public function show(Rendez_vous $rendez_vous)
     {
         //
+        $rendez_vous = rendez_vous::find($rendez_vous);
+        if(is_null($rendez_vous)){
+            return response()->json(['message'=> 'rendez_vous introuvable'],404);
+        }
+        return response()->json(rendez_vous::find($rendez_vous),200);
     }
 
     /**
