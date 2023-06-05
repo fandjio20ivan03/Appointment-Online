@@ -10,9 +10,10 @@ class RendezVousController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+     public function index()
     {
-        //
+
+        return response()->json(Rendez_vous::all(),200);
     }
 
     /**
@@ -62,4 +63,5 @@ class RendezVousController extends Controller
     {
         //
     }
+
 }

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('rendez_vouses', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->date('heure');
+            $table->time('heure');
             $table->timestamps();
         });
     }
