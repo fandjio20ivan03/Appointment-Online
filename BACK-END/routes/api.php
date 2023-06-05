@@ -25,11 +25,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::prefix('patient')->name('patient.')->group(function () {
+    //afficher tous les patients
     Route::get('/', [PatientController::class, 'index'])->name('index');
+
+    //
     // Route::get('/create', [StudentController::class, 'create'])->name('create');
-    // Route::post('/', [StudentController::class, 'store'])->name('store');
-    // Route::get('delete/{id}', [StudentController::class, 'delete'])->name('delete');
-    // Route::get('/update/{id}', [StudentController::class, 'getUpdate'])->name('get_update');
-    // Route::put('/update/{id}', [StudentController::class, 'update'])->name('update');
-    // Route::get('note/{id}', [NoteController::class, 'getNote'])->name('note');
+
+    //enregistree les informations d'un patient dans la base de donnee
+    Route::post('/', [PatientController::class, 'store'])->name('store');
+
+    //modifier les informations d'un patient dans la base de donnee
+    Route::put('/update/{id}', [PatientController::class, 'update'])->name('update');
+
+    //
+    Route::get('/show/{id}', [PatientController::class, 'show'])->name('show');
+
+    //supprimer un patient de la base de donnee grace a sont identifiant
+    Route::delete('/delete/{id}', [PatientController::class, 'delete'])->name('delete');
 });
+

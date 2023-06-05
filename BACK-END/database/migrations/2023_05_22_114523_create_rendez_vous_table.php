@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->date('date');
             $table->date('heure');
-            $table->foreignId('medecin_id')->constrained()->onDelete('cascade');
             $table->foreignId('patient_id')->constrained()->onDelete('cascade');
+            $table->foreignId('medecin_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
- 
+
     /**
      * Reverse the migrations.
      */
