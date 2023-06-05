@@ -36,7 +36,8 @@ class CalendrierController extends Controller
     public function store(CalendrierRequest $request)
     {
         // validation des donnees de la requete
-        Calendrier::create($request->all());
+        $request = $request->except($request->_token);
+        Calendrier::create($request);
         return response()->json(["message" => "date ajoutés avec succes"],200);
 
     }

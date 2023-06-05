@@ -25,10 +25,9 @@ class CalendrierRequest extends FormRequest
     {
         return [
                 // j'effectue une verification sur les differents attributs de ma table patient
-
-                'date' => 'required | date',
-                'heure_debut' => 'required | date_format:H:i:s | before:'.$this->input('heure_fin'),  // $validator en param de la mothode json pour recupere les messages appropries
-                'heure_fin' => 'required | date_format:H:i:s',
+            'date' => 'required | date',
+            'heure_debut' => 'required | before:'.$this->input('heure_fin'),  // $validator en param de la mothode json pour recupere les messages appropries
+            'heure_fin' => 'required | date_format:H:i:s'
         ];
     }
 
