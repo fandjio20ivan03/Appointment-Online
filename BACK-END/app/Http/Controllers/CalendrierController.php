@@ -91,7 +91,7 @@ class CalendrierController extends Controller
         $date = Calendrier::find($id);
         if(empty($date))
         {
-            return reponse()->json(["message" => "date introuvable"],404);
+            return response()->json(["message" => "date introuvable"],404);
 
         }
         $validator = Validator::make($request->all(),
