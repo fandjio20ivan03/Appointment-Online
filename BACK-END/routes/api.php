@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\MedecinController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CalendrierController;
 use App\Http\Controllers\PatientController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -15,14 +18,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('stevane', [MedecinController::class, 'index']);
-Route::post('medecin/create', [MedecinController::class, 'create']);
-
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+// CRUD  sur le Calendrier
+
+Route::prefix('calendrier')->name('calendrier.')->group(function (){
+
+    // afficher le calendrier
+    Route::get('/',[CalendrierController::class, 'index'])->name('index');
+
+    //aficher un date specifique du calendrier
+    Route::get('/show/{id}',[CalendrierController::class, 'show'])->name('show');
+
+    //creation d'une date
+    Route::post('/',[CalendrierController::class, 'store'])->name('store');
+
+    //mise a jour d'une date donnee
+    Route::put('/update/{id}', [CalendrierController::class, 'update'])->name('update');
+
+    // supprimer une date du calendrier
+    Route::delete('/delete/{id}',[CalendrierController::class, 'destroy'])->name('destroy');
+
+});
 
 Route::prefix('patient')->name('patient.')->group(function () {
     //afficher tous les patients

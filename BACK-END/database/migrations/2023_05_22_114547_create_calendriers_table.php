@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('calendriers', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->date('heure');
+            $table->time('heure_debut');
+            $table->time('heure_fin');
             $table->timestamps();
         });
     }
- 
+
     /**
      * Reverse the migrations.
      */

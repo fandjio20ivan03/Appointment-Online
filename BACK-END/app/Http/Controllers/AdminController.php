@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Patient;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -10,9 +11,17 @@ class AdminController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+
+
+    public function index_patient()
     {
-        //
+        $patients = Patient::all();
+        return response()->json($patients,200);
+    }
+
+    public function index_medecin()
+    {
+
     }
 
     /**
