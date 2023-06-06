@@ -19,9 +19,11 @@ class RendezVousController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+        $rendez_vous = Rendez_vous::create($request->all());
+        return response($rendez_vous,201);
     }
 
     /**
@@ -35,14 +37,15 @@ class RendezVousController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Rendez_vous $rendez_vous)
+    public function show($id)
     {
         //
-        $rendez_vous = rendez_vous::find($rendez_vous);
-        if(is_null($rendez_vous)){
+        // dd($rendez_vous);
+         $rendez_vous = Rendez_vous::find($id);
+        if(is_null($id)){
             return response()->json(['message'=> 'rendez_vous introuvable'],404);
         }
-        return response()->json(rendez_vous::find($rendez_vous),200);
+        return response()->json(['message' => 'dtdtffjfjfjfjfj'], 200);
     }
 
     /**
@@ -56,17 +59,32 @@ class RendezVousController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Rendez_vous $rendez_vous)
+    public function update(Request $request,  $rendez_vous)
     {
         //
+        $rendez_vous = Rendez_vous::find($rendez_vous);
+        if(is_null($rendez_vous)){
+            return response()->json(['message'=> 'rendez_vous introuvable'],404);
+
+        }
+        $rendez_vous->update($request->all());
+        return response($rendez_vous,200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Rendez_vous $rendez_vous)
+    public function destroy( $rendez_vous)
     {
-        //
+        // dd($rendez_vous);
+       $rendez_vous = Rendez_vous::find($rendez_vous);
+        if(is_null($rendez_vous)){
+            return response()->json(['message'=> 'rendez_vous introuvable'],404);
+
+        }
+        $rendez_vous->delete();
+        // dd('ok');
+        return response(null,204);
     }
 
 }

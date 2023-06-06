@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Rendez_vous extends Model
 {
     use HasFactory;
+    protected $fillable =['date','heure'];
 }
