@@ -28,7 +28,7 @@ class   CreatePatientRequest extends FormRequest
 
             'pat_nom' => 'required|string|max:100',
             'pat_prenom' => 'required|string|max:100',
-            // 'pat_ville' => 'required|string|in:Douala, Yaounde, Marroua, nkongsamba, dschang',
+            'pat_ville' => 'required|string|validate',
             'pat_dateNais' => 'required|date|before:today',
             'pat_email' => 'required|email|unique:patients,pat_email',
             'pat_tel' => 'required|string'
