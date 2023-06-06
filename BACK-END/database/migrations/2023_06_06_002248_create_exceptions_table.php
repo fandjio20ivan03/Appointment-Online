@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('calendriers', function (Blueprint $table) {
+        Schema::create('exceptions', function (Blueprint $table) {
             $table->id();
-            $table->date('date');       
+            $table->date('date');
             $table->time('heure_debut');
             $table->time('heure_fin');
+            $table->foreignId('validite_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('calendriers');
+        Schema::dropIfExists('exceptions');
     }
 };

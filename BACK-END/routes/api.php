@@ -65,3 +65,25 @@ Route::prefix('patient')->name('patient.')->group(function () {
     Route::delete('/delete/{id}', [PatientController::class, 'delete'])->name('delete');
 });
 
+
+
+// CRUD  sur le Calendrier
+
+Route::prefix('calendrier')->name('calendrier.')->group(function (){
+
+    // afficher le calendrier
+    Route::get('/',[CalendrierController::class, 'index'])->name('index');
+
+    //aficher un date specifique du calendrier
+    Route::get('/show/{id}',[CalendrierController::class, 'show'])->name('show');
+
+    //creation d'une date
+    Route::post('/',[CalendrierController::class, 'store'])->name('store');
+
+    //mise a jour d'une date donnee
+    Route::put('/update/{id}', [CalendrierController::class, 'update'])->name('update');
+
+    // supprimer une date du calendrier
+    Route::delete('/delete/{id}',[CalendrierController::class, 'destroy'])->name('destroy');
+
+});
