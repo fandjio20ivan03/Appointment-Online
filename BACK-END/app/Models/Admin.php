@@ -16,4 +16,9 @@ class Admin extends Model
         'adm_tel',
         'user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

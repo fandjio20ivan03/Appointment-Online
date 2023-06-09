@@ -24,8 +24,8 @@ class loginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "login"=>'required|min:5|max:100|exists:users,login',
-            "password" => 'required|min:5'
+            "login"=>'required|exists:users,login',
+            "password" => 'required'
         ];
     }
 
@@ -41,12 +41,12 @@ class loginRequest extends FormRequest
     {
         return [
             'login.required'=>'Veillez entrer un login',
-            'login.min'=>'Le nom doit faire au moins 5 caracteres',
-            'login.max'=>'Le nom doit faire au moins 100 caracteres',
+            // 'login.min'=>'Le nom doit faire au moins 5 caracteres',
+            // 'login.max'=>'Le nom doit faire au moins 100 caracteres',
             'login.exists'=>"Ce login n'existe pas",
 
             'password.required'=>'veillez votre mot de passe',
-            'password.min'=>'Le mot de passe doit faire minimum 5 caracteres'
+            // 'password.min'=>'Le mot de passe doit faire minimum 5 caracteres'
         ];
     }
 }

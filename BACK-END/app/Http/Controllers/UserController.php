@@ -156,7 +156,7 @@ class UserController extends Controller
                 $specialite = Specialite::create([
                     'specialite' => $request->spec_nom
                 ]);
-                dd(Specialite::where('spec_nom', $request->specialite)->first()->id);
+                // dd(Specialite::where('spec_nom', $request->specialite)->first()->id);
 
                 // $specialite_id = Specialite::where('spec_nom', $request->specialite)->first()->id;
 
@@ -171,12 +171,6 @@ class UserController extends Controller
                     'specialite_id' => Specialite::where('spec_nom', $request->specialite)->first()->id,
                     dd('specialite_id')
                 ]);
-
-
-                //Creer un medecin associer a la specialite
-                // $medecin = $specialite->medecin()->create([
-                //     'specialite_id' =>Specialite::where('spec_nom', $request->spec_nom)->first()->id
-                // ]);
 
                 return response()->json([
                     "status_code"=>200,

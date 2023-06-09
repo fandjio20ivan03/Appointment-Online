@@ -18,4 +18,14 @@ class Medecin extends Model
         'specialite_id',
         'user_id'
     ];
+
+    public function specialite()
+    {
+        return $this->belongsTo(Specialite::class);
+    }
+
+    public function user()
+    {
+    return $this->belongsTo(User::class);
+    }
 }
