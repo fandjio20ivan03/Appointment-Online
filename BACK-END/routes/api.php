@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\MedecinController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CalendrierController;
 use App\Http\Controllers\PatientController;
 use Illuminate\Http\Request;
@@ -67,23 +66,22 @@ Route::prefix('patient')->name('patient.')->group(function () {
 
 
 
-// CRUD  sur le Calendrier
 
-Route::prefix('calendrier')->name('calendrier.')->group(function (){
+Route::prefix('medecins')->name('medecin.')->group(function () {
+    //afficher tous les patients
+    Route::get('/', [MedecinController::class, 'index'])->name('index');
 
-    // afficher le calendrier
-    Route::get('/',[CalendrierController::class, 'index'])->name('index');
+    //enregistree les informations d'un patient dans la base de donnee
+    Route::post('/', [MedecinController::class, 'store'])->name('store');
 
-    //aficher un date specifique du calendrier
-    Route::get('/show/{id}',[CalendrierController::class, 'show'])->name('show');
+    //modifier les informations d'un patient dans la base de donnee
+    Route::put('/update/{id}', [MedecinController::class, 'update'])->name('update');
 
-    //creation d'une date
-    Route::post('/',[CalendrierController::class, 'store'])->name('store');
+    //
+    Route::get('/show/{id}', [MedecinController::class, 'show'])->name('show');
 
-    //mise a jour d'une date donnee
-    Route::put('/update/{id}', [CalendrierController::class, 'update'])->name('update');
-
-    // supprimer une date du calendrier
-    Route::delete('/delete/{id}',[CalendrierController::class, 'destroy'])->name('destroy');
-
+    //supprimer un patient de la base de donnee grace a sont identifiant
+    Route::delete('/delete/{id}', [MedecinController::class, 'destroy'])->name('delete');
 });
+
+

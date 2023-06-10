@@ -9,6 +9,7 @@ import { PageStatistiqueComponent } from './pages/page-statistique/page-statisti
 import { MenuComponent } from './composants/menu/menu.component';
 import { PageMedecinComponent } from './pages/page-medecin/page-medecin.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -24,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

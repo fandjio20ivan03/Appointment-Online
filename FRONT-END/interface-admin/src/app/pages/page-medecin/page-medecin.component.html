@@ -42,23 +42,27 @@
       </tr>
     </thead>
     <tbody>
-      <!-- <tr *ngFor="let patient of patients">
-        <td>{{ patient.id }}</td>
-        <td>{{ patient.pat_nom }}</td>
-        <td>{{ patient.pat_prenom }}</td>
-        <td>{{ patient.pat_ville }}</td>
-        <td>{{ patient.pat_date_Nais }}</td>
-        <td>{{ patient.pat_email }}</td>
-        <td>{{ patient.pat_tel }}</td>
+      <tr *ngFor="let medecin of medecins">
+        <td>{{ medecin.id }}</td>
+        <td>{{ medecin.med_nom }}</td>
+        <td>{{ medecin.med_prenom }}</td>
+        <td>{{ medecin.med_ville }}</td>
+        <td>{{ medecin.med_date_Nais }}</td>
+        <td>{{ medecin.med_email }}</td>
+        <td>{{ medecin.med_tel }}</td>
         <td class="col-md-3">
           <button type="button" class="btn btn-outline-info">Infos</button>
           &nbsp;
           <button type="button" class="btn btn-outline-primary">Update</button>
           &nbsp;
-          <button type="button" class="btn btn-outline-danger">Delete</button>
+          <button type="button" class="btn btn-outline-danger" (click)="deleteMedecinData(medecin.id) " >Delete</button>
         </td>
-
-      </tr> -->
+      </tr>
+      <tr *ngIf="medecins null">
+        <td colspan="8" class="center">Ancune donnee à afficher</td>
+      </tr>
     </tbody>
   </table>
 </div>
+
+
