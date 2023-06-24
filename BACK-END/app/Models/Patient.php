@@ -22,4 +22,10 @@ class Patient extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    // La relation entre le patient et les rendez-vous
+    public function rendez_vous()
+    {
+        return $this->hasMany(RendezVous::class);
+    }
 }
