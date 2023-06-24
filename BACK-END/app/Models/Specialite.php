@@ -11,7 +11,7 @@ class Specialite extends Model
 
     protected $fillable = [ 'spec_nom' ];
 
-    public function medecin()
+    public function medecins()
     {
         return $this->hasMany(Medecin::class); // Définit une relation hasOne avec le modèle Medecin
     }

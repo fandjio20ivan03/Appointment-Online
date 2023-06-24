@@ -48,7 +48,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        // 'password',
+        'hashed_password',
         'remember_token',
     ];
 
@@ -59,7 +60,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        // 'password' => 'hashed',
     ];
 // Donne moi trois facon d'ecrire ce code
     // public function type():Attribute{

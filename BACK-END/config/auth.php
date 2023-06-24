@@ -63,6 +63,7 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+            'field' => 'login', // Ajoutez cette ligne pour indiquer que le login est le champ d'identification
         ],
 
         // 'users' => [
