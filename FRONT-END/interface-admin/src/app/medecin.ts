@@ -1,8 +1,8 @@
 export class Medecin {
-    nom:any;
-    prenom:any;
-    ville:any;
-    date_Nais:any;
-    email:any;
-    telephone:any;
+  med_nom:any;
+  med_prenom:any;
+  med_ville:any;
+  med_dateNais:any;
+  med_email:any;
+  med_tel:any;
 }

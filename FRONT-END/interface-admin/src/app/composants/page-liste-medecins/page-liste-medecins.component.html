@@ -1,10 +1,11 @@
+
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h1 class="h2">Ensemble des {{ origin }}</h1>
+  <h1 class="h2">{{ origin }}</h1>
   <div class="btn-toolbar mb-2 mb-md-0">
     <div class="btn-group me-2">
-      <button type="button" class="btn btn-sm btn-outline-primary">
+      <button type="button" class="btn btn-sm btn-outline-primary" [routerLink]="['/medecins/ajout-medecin']">
        <!-- icon + -->
-        Nouveau
+          Nouveau
       </button>
     </div>
 
@@ -34,11 +35,11 @@
         <th scope="col">Matricule</th>
         <th scope="col">Nom</th>
         <th scope="col">Prenom</th>
-        <th scope="col">Ville</th>
         <th scope="col">Numero de telephone</th>
         <th scope="col">Adresse Email</th>
-        <th scope="col">Numero de telephone</th>
-        <th scope="col">Action &aacute; effectuer</th>
+        <th scope="col">Ville</th>
+        <th scope="col">Date de Naissance</th>
+        <th scope="col">Action &agrave; effectuer</th>
       </tr>
     </thead>
     <tbody>
@@ -46,20 +47,20 @@
         <td>{{ medecin.id }}</td>
         <td>{{ medecin.med_nom }}</td>
         <td>{{ medecin.med_prenom }}</td>
-        <td>{{ medecin.med_ville }}</td>
-        <td>{{ medecin.med_date_Nais }}</td>
-        <td>{{ medecin.med_email }}</td>
         <td>{{ medecin.med_tel }}</td>
+        <td>{{ medecin.med_email }}</td>
+        <td>{{ medecin.med_ville }}</td>
+        <td>{{ medecin.med_dateNais }}</td>
         <td class="col-md-3">
           <button type="button" class="btn btn-outline-info">Infos</button>
           &nbsp;
-          <button type="button" class="btn btn-outline-primary">Update</button>
+          <button type="button" class="btn btn-outline-primary"  routerLink="/medecins/edit-medecin/{{ medecin.id }}" >Update</button>
           &nbsp;
-          <button type="button" class="btn btn-outline-danger" (click)="deleteMedecinData(medecin.id) " >Delete</button>
+          <button type="button" class="btn btn-outline-danger" (click)="deleteMedecinData(medecin.id)">Delete</button>
         </td>
       </tr>
-      <tr *ngIf="medecins null">
-        <td colspan="8" class="center">Ancune donnee à afficher</td>
+      <tr *ngIf="medecins == ''">
+        <td colspan="8" class="text-center">Ancune donnee à afficher</td>
       </tr>
     </tbody>
   </table>

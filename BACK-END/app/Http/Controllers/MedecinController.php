@@ -7,6 +7,9 @@ use App\Http\Requests\Medecin\MedecinRequest;
 
 class MedecinController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
         //je retourne ici tous les patients de notre table avec un response json pour consommer en api en front-end
@@ -21,9 +24,9 @@ class MedecinController extends Controller
     public function store(MedecinRequest $request)
     {
          //fonction me permettant de sauvegarde les informations envoyer par le patient dans la base de donnees
-         $medecin = $request->except('_token');
-         Medecin::create($medecin);
-         return response()->json(['message' => 'la creation est reussit avec succes'], 200);
+         $request = $request->except($request->_token);
+         Medecin::create($request);
+         return response()->json(['message' => 'la creation a reussit avec succes'], 200);
     }
 
     public function show($id)
@@ -36,6 +39,9 @@ class MedecinController extends Controller
         return response()->json($medecin,200);
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     */
     public function edit(Medecin $medecin)
     {
 

@@ -2,11 +2,13 @@
 
 namespace App\Http\Requests\Medecin;
 
+use App\Models\Medecin;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Arr;
 use Nette\Utils\Arrays;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rule;
 
 class MedecinRequest extends FormRequest
 {
@@ -25,12 +27,19 @@ class MedecinRequest extends FormRequest
      */
     public function rules(): array
     {
+
+        $emailUniqueRule = Rule::unique('medecins');
+        if($this->method() == 'PUT'){
+            $emailUniqueRule = Rule::unique('medecins','med_email')->ignore($this->id);
+        }
+
         return [
             'med_nom' => 'required|string|max:100',
             'med_prenom' => 'required|string|max:100',
             'med_dateNais' => 'required|date|before:today',
-            'med_email' => 'required|email|unique:medecins,med_email',
-            'med_tel' => 'required|string'
+            'med_email' => 'required|email|'.$emailUniqueRule,
+            'med_ville' => 'required',
+            'med_tel' => 'required|string',
         ];
     }
 
@@ -47,10 +56,12 @@ class MedecinRequest extends FormRequest
 
             'med_email.required' => 'le champs email est obligatoire',
             'med_email.email' => 'l\'email entrer n\'est pas valide veillez entrer une adresse mail valide',
-            'med_email.unique' => 'cette adresse mail existe deja veillez entrer une autres s\'il vous plait',
+            'med_email.unique' => 'cette adresse mail existe deja veillez entrer une autres s\'il-vous-plait',
 
             'med_tel.required' => 'le champs numero de telephone est obligatoire',
-            'med_tel.string' => 'le numero entrer ne possede pas l\'identifiant d\'un pays',
+            'med_tel.string' => 'le numero entrer ne possède pas l\'identifiant d\'un pays',
+
+            'med_ville.required' => 'le champs ville de residence est obligatoire',
         ];
     }
 
@@ -64,9 +75,9 @@ class MedecinRequest extends FormRequest
         throw new  HttpResponseException(response()->json([
             'succes' => false,
             'error' => true,
-            'message' => 'erreur de validation',
-            'errorList' => $validator->errors()
-        ]));
+            'message' => 'Erreur de validation',
+            'errorList' => $validator->errors(),
+        ], 201));
     }
 
 }

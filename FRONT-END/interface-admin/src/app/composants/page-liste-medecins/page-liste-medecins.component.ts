@@ -1,29 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-// import { isEmpty } from 'rxjs';
+import { Medecin } from 'src/app/medecin';
 import { DataService } from 'src/app/services/data.service';
 
-
 @Component({
-  selector: 'app-page-medecin',
-  templateUrl: './page-medecin.component.html',
-  styleUrls: ['./page-medecin.component.scss']
+  selector: 'app-page-liste-medecins',
+  templateUrl: './page-liste-medecins.component.html',
+  styleUrls: ['./page-liste-medecins.component.scss']
 })
-export class PageMedecinComponent implements OnInit {
- origin = '';
- medecins :any;
+export class PageListeMedecinsComponent implements OnInit{
+origin = '';
+medecins :any;
 constructor (private activatedRoute: ActivatedRoute, private dataService: DataService
-){}
+  ){}
 
-ngOnInit(): void {
-  this.activatedRoute.data.subscribe( data => {
-  this.origin = data['origin'];
-  this.getMedecinData();
+  ngOnInit(): void {
+    this.activatedRoute.data.subscribe( data => {
+    this.origin = data['origin'];
+    this.getMedecinData();
 
-});
-
-
+  });
 }
+
 getMedecinData(){
   this.dataService.getDataMedecin().subscribe(res =>{
     this.medecins = res;
