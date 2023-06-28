@@ -29,13 +29,13 @@
 </div>
 <br/>
 <div class="table-responsive">
-  <table class="table table-striped table-hover table-sm">
+  <table class="table table-hover  table-sm">
     <thead>
       <tr>
         <th scope="col">Matricule</th>
         <th scope="col">Nom</th>
         <th scope="col">Prenom</th>
-        <th scope="col">Numero de telephone</th>
+        <th scope="col">T&eacute;l&eacute;phone</th>
         <th scope="col">Adresse Email</th>
         <th scope="col">Ville</th>
         <th scope="col">Date de Naissance</th>
@@ -43,8 +43,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let medecin of medecins">
-        <td>{{ medecin.id }}</td>
+      <tr *ngFor="let medecin of medecins | paginate: { itemsPerPage: nombre_par_page , currentPage: p , totalItems: nombre_medecins }">
+        <td>CM-20MHS{{ medecin.id }}</td>
         <td>{{ medecin.med_nom }}</td>
         <td>{{ medecin.med_prenom }}</td>
         <td>{{ medecin.med_tel }}</td>
@@ -52,18 +52,18 @@
         <td>{{ medecin.med_ville }}</td>
         <td>{{ medecin.med_dateNais }}</td>
         <td class="col-md-3">
-          <button type="button" class="btn btn-outline-info">Infos</button>
+          <button type="button" class="btn btn-outline-info"  routerLink="/medecins/info-medecin/{{ medecin.id }}" >Infos</button>
           &nbsp;
           <button type="button" class="btn btn-outline-primary"  routerLink="/medecins/edit-medecin/{{ medecin.id }}" >Update</button>
           &nbsp;
           <button type="button" class="btn btn-outline-danger" (click)="deleteMedecinData(medecin.id)">Delete</button>
         </td>
       </tr>
-      <tr *ngIf="medecins == ''">
-        <td colspan="8" class="text-center">Ancune donnee à afficher</td>
+      <tr *ngIf="medecins?.length === 0">
+        <td colspan="8" class="text-center">Pas de données trouvées</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-
+ <pagination-controls class="text-center" [maxSize]="7" (pageChange)="pageChanged(p = $event)"  *ngIf="medecins?.length > 0"></pagination-controls>

@@ -5,9 +5,12 @@ use App\Http\Controllers\MedecinController;
 use App\Http\Controllers\CalendrierController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SpecialiteController;
+use App\Models\Medecin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+//supp
+use App\Models\Specialite;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -94,3 +97,21 @@ Route::prefix('medecins')->name('medecin.')->group(function () {
 });
 
 
+Route::prefix('specialites')->group(function (){
+    //afficher tous les specialtites
+    Route::get('/', [SpecialiteController::class, 'index'])->name('index');
+
+    //recuperer une specialite par son id
+    Route::get('/show/{id}', [SpecialiteController::class, 'show'])->name('show');
+});
+
+
+// Route::get('/test',function (){
+//     dd( ((Specialite::all()->pluck('id')->toArray()))[array_rand(Specialite::all()->pluck('id')->toArray())]);
+//     return response()->json([array_rand(Specialite::all()->pluck('id')->toArray())],200);
+// });
+
+
+Route::get('/medecins-page', [MedecinController::class, 'getPageMedecin']);
+
+Route::get('/medecins-search', [MedecinController::class, 'getMedecinsBySearch']);

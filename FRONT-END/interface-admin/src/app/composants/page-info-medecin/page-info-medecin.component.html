@@ -1,0 +1,72 @@
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">{{ origin }}</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group me-2">
+      <button type="button" class="btn btn-sm btn-outline-secondary " routerLink="/medecins/edit-medecin/{{ id }}" >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="feather feather-calendar" aria-hidden="true">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+        <line x1="16" y1="2" x2="16" y2="6"></line>
+        <line x1="8" y1="2" x2="8" y2="6"></line>
+        <line x1="3" y1="10" x2="21" y2="10"></line>
+      </svg>
+        Modifier
+      </button>
+    </div>
+    <div class="btn-group me-2">
+      <!-- icon ^ -->
+      <button type="button" class="btn btn-sm btn-outline-success">Exporter</button>
+    </div>
+
+  </div>
+</div>
+<br/>
+
+  <h4 class="pb-3">Informations sur Dr. {{ medecin.med_prenom }}</h4>
+
+  <div class="row pb-4 form-group responsive-group-input">
+    <div class="col">
+      <p class="fs-5 font-weight-bold">Matricule:    <span class="ps-5 text-muted"> CM-20MHS{{ medecin.id }} </span> </p>
+    </div>
+    <div class="col">
+      <p class="fs-5 font-weight-bold">Prenom:    <span class="ps-5 text-muted"></span> </p>
+    </div>
+  </div>
+  <div class="row pb-4 form-group responsive-group-input">
+    <div class="col">
+      <p class="fs-5 font-weight-bold">Nom:    <span class="ps-5 text-muted"> {{ medecin.med_nom }} </span> </p>
+    </div>
+    <div class="col">
+      <p class="fs-5 font-weight-bold">Prenom:    <span class="ps-5 text-muted"> {{ medecin.med_prenom }} </span> </p>
+    </div>
+  </div>
+  <div class="row pb-4 form-group responsive-group-input">
+    <div class="col">
+      <p class="fs-5 font-weight-bold"> Specialite:   <span class="ps-5 text-muted" *ngIf="specialite != null "> {{ specialite.spec_nom }} </span> </p>
+    </div>
+    <div class="col">
+      <p class="fs-5 font-weight-bold">Autre:    <span class="ps-5 text-muted">     </span> </p>
+    </div>
+  </div>
+  <div class="row pb-4 form-group responsive-group-input">
+    <div class="col">
+      <p class="fs-5 font-weight-bold">Adresse Email:    <span class="ps-5 text-muted"> {{ medecin.med_email }} </span> </p>
+    </div>
+    <div class="col">
+      <p class="fs-5 font-weight-bold">Numero de Telephone:    <span class="ps-5 text-muted">  {{ medecin.med_tel }}  </span> </p>
+    </div>
+  </div>
+  <div class="row pb-4 form-group responsive-group-input">
+    <div class="col">
+      <p class="fs-5 font-weight-bold">Ville de Residence:    <span class="ps-5 text-muted"> {{ medecin.med_ville }}  </span> </p>
+    </div>
+    <div class="col">
+      <p class="fs-5 font-weight-bold">Date de Naissance:    <span class="ps-5 text-muted"> {{ medecin.med_dateNais }} </span> </p>
+    </div>
+  </div>
+  <input type="button" value="Retour" class="btn btn-primary" style=" float: right;" [routerLink]="['/medecins/liste-medecins']">
+
+
+

@@ -13,13 +13,9 @@
 <br/>
 
 <form method="post"  (ngSubmit)="updateData()">
-  <h4 class="pb-3">Veillez entrer ces informations:</h4>
-
-
-  <p *ngIf="list_error != null" class="text-danger fs-4">{{ list_error.message }}</p>
-
-
-  <div class="row pb-4 form-group">
+  <h4 class="pb-1">Veillez modifier ces informations:</h4>
+  <div *ngIf="list_error != null" class="fs-5 alert alert-danger" role="alert">{{ list_error.message }}</div>
+  <div class="row pb-1 form-group responsive-group-input">
     <div class="col">
       <label for="nom" class="fs-5 font-weight-bold">Entrez le Nom</label><span class="text-danger fs-5"> *</span>
       <input type="text" id="nom" class="form-control" placeholder="Nom" name="med_nom" [(ngModel)]="medecin.med_nom">
@@ -31,7 +27,7 @@
       <p *ngIf="list_error != null" class="text-danger" >{{ list_error.errorList.med_prenom }}</p>
     </div>
   </div>
-  <div class="row pb-4 form-group">
+  <div class="row pb-1 form-group responsive-group-input">
     <div class="col">
       <label for="email" class="fs-5">Entrez l'adresse Email</label><span class="text-danger fs-5"> *</span>
       <input type="email" id="email" class="form-control"   name="med_email"  [(ngModel)]="medecin.med_email">
@@ -43,7 +39,22 @@
       <p *ngIf="list_error != null" class="text-danger" >{{ list_error.errorList.med_tel }}</p>
     </div>
   </div>
-  <div class="row pb-4 form-group">
+  <div class="row pb-1 form-group responsive-group-input">
+    <div class="col">
+      <label for="specialite_id" class="fs-5">Choisir une specialit&eacute;</label><span class="text-danger fs-5"> *</span>
+      <select class="custom-select form-control" id="specialite_id" name="specialite_id"  [(ngModel)]="medecin.specialite_id">
+        <!-- <option value="" selected> Auncun choix </option> -->
+        <option *ngFor="let spacialite of spacialites" value="{{ spacialite.id }}" > {{ spacialite.spec_nom }}  </option>
+      </select>
+      <p *ngIf="list_error != null" class="text-danger" >{{ list_error.errorList.specialite_id }}</p>
+    </div>
+    <div class="col">
+      <label for="as" class="fs-5 font-weight-bold">Entrez ...</label><span class="text-danger fs-5"> *</span>
+      <input type="text" id="as" class="form-control" name="as">
+      <p *ngIf="list_error != null" class="text-danger">{{ list_error.errorList.med_dateNais }}</p>
+    </div>
+  </div>
+  <div class="row pb-3 form-group responsive-group-input">
     <div class="col">
       <label for="ville" class="fs-5">Entrez la ville de Residence</label><span class="text-danger fs-5"> *</span>
       <input type="text" id="ville" class="form-control" placeholder="ville" name="med_ville" [(ngModel)]="medecin.med_ville">
@@ -55,7 +66,7 @@
       <p *ngIf="list_error != null" class="text-danger">{{ list_error.errorList.med_dateNais }}</p>
     </div>
   </div>
-  <input type="submit" value="Valider" class="btn btn-primary" style=" float: right;">
+  <input type="submit" value="Mettre &agrave; jour" class="btn btn-primary" style=" float: right;">
 </form>
 
 

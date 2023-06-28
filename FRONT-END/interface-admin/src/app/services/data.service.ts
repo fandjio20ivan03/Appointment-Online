@@ -10,13 +10,20 @@ export class DataService {
   constructor(private httpClient: HttpClient) { }
 
 
-  getDataPatient(){
-    return this.httpClient.get('http://127.0.0.1:8000/api/patients');
-}
+// consomation cote medecin
+  getMedecinBySearch(text_search:any){
+    return this.httpClient.get(`http://127.0.0.1:8000/api/medecins-search?search=${text_search}`);
+  }
 
   deleteDataMedecin(id: any){
     return this.httpClient.delete('http://127.0.0.1:8000/api/medecins/delete/'+id);
   }
+
+
+  getDataMedecinPage(page:number){
+    return this.httpClient.get(`http://127.0.0.1:8000/api/medecins-page?page=${page}`);
+  }
+
 
   getDataMedecin(){
       return this.httpClient.get('http://127.0.0.1:8000/api/medecins');
@@ -32,6 +39,25 @@ export class DataService {
 
   updateDataMedecin(id:any,medecin:Medecin): Observable<HttpResponse <any>>{
     return this.httpClient.put('http://127.0.0.1:8000/api/medecins/update/'+id, medecin, {observe: 'response'});
+  }
+
+
+  // consomation cote specialite
+  getDataSpecialite(){
+    return this.httpClient.get('http://127.0.0.1:8000/api/specialites');
+  }
+
+
+  getDataSpecialiteById(id: any){
+    return this.httpClient.get('http://127.0.0.1:8000/api/specialites/show/'+id);
+  }
+
+
+
+
+  // consomation cote patient
+  getDataPatient(){
+    return this.httpClient.get('http://127.0.0.1:8000/api/patients');
   }
 
 

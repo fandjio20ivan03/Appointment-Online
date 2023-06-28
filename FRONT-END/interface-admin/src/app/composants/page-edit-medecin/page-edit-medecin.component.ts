@@ -11,6 +11,7 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class PageEditMedecinComponent  implements OnInit{
   id:any;
+  spacialites:any;
   medecin = new Medecin();
   data: any;
   list_error:any;
@@ -24,17 +25,18 @@ ngOnInit(): void {
   this.origin = res['origin'];
   this.id = this.activatedRoute.snapshot.params['id'];
   this.getMedecinByIdData(this.id);
+  this.getSpecialiteData();
   })
 }
 
 updateData(){
   this.dataService.updateDataMedecin(this.id,this.medecin).subscribe((res: HttpResponse<any>)=>{
   this.list_error = res.body;
-  
+
   if (res.status === 200) {
     this.router.navigate(['/medecins/liste-medecins']);
     }
-  })
+  });
 }
 
 
@@ -42,6 +44,14 @@ getMedecinByIdData(id:any){
   this.dataService.getDataMedecinById(id).subscribe(res =>{
     this.data = res;
     this.medecin = this.data;
-  })
+  });
 }
+
+
+getSpecialiteData(){
+  this.dataService.getDataSpecialite().subscribe( res =>{
+    this.spacialites = res;
+  });
+}
+
 }

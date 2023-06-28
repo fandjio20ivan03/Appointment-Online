@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Medecin;
 use App\Http\Requests\Medecin\MedecinRequest;
+// use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
 
 class MedecinController extends Controller
 {
@@ -70,4 +72,35 @@ class MedecinController extends Controller
         $medecin->delete();
         return response()->json(["massage" => "bonne suppression du medecin"],200);
     }
+
+
+    public function getPageMedecin(Request $request)
+    {
+        // dd($request);
+        $pagination = 9;
+        $page = $request->input('page');
+        $data = Medecin::paginate($pagination, ['*'],'page',$page);
+        return response()->json(['data' => $data->Items(),'total' => $data->total()],200);
+    }
+
+    public function getMedecinsBySearch(Request $request)
+    {
+        $search = $request->input('search');
+
+        $medecins = Medecin::where('med_nom', 'LIKE', '%'.$search.'%')->orWhere('med_prenom', 'LIKE', '%'.$search.'%')->orWhere('med_ville', 'LIKE', '%'.$search.'%')->get();
+        
+        if(empty($medecins->items)){
+
+            return response()->json($medecins,200);
+            
+        }else{
+            
+            return response()->json(['message' => 'introuve'],201);
+        }
+
+    }
+
+
+
 }
+

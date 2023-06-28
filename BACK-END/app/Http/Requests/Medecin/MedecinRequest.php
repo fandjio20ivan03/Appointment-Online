@@ -9,6 +9,7 @@ use Nette\Utils\Arrays;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Validation\Rule;
+use Whoops\Run;
 
 class MedecinRequest extends FormRequest
 {
@@ -29,8 +30,10 @@ class MedecinRequest extends FormRequest
     {
 
         $emailUniqueRule = Rule::unique('medecins');
+        $telUniqueRule = Rule::unique('medecins');
         if($this->method() == 'PUT'){
             $emailUniqueRule = Rule::unique('medecins','med_email')->ignore($this->id);
+            $telUniqueRule = Rule::unique('medecins','med_tel')->ignore($this->id);
         }
 
         return [
@@ -39,7 +42,8 @@ class MedecinRequest extends FormRequest
             'med_dateNais' => 'required|date|before:today',
             'med_email' => 'required|email|'.$emailUniqueRule,
             'med_ville' => 'required',
-            'med_tel' => 'required|string',
+            'med_tel' => 'required|string|max:13|'.$telUniqueRule,
+            'specialite_id' => 'required|exists:specialites,id',
         ];
     }
 
@@ -60,8 +64,14 @@ class MedecinRequest extends FormRequest
 
             'med_tel.required' => 'le champs numero de telephone est obligatoire',
             'med_tel.string' => 'le numero entrer ne possède pas l\'identifiant d\'un pays',
+            'med_tel.max' => 'la taille maximale du numero de téléphone est 13',
+            'med_tel.unique' => 'ce numero de telephone existe deja veillez entrer un autre s\'il-vous-plait',
 
             'med_ville.required' => 'le champs ville de residence est obligatoire',
+
+
+            'specialite_id.required' => 'une specialite doit etre fournis',
+            'specialite_id.exists' => 'la specialite doit exister',
         ];
     }
 
