@@ -12,7 +12,8 @@ class SpecialiteController extends Controller
      */
     public function index()
     {
-        //
+        //je retourne ici tous les specialistes de notre table avec un response json pour consommer en api en front-end
+        return response()->json(Specialite::all(), 200);
     }
 
     /**
@@ -34,9 +35,14 @@ class SpecialiteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Specialite $specialite)
+    public function show($id)
     {
-        //
+        $specialite = Specialite::find($id);
+        if(empty($specialite))
+        {
+            return response()->json(["message" => "specialite introuvable"], 404);
+        }
+        return response()->json($specialite,200);
     }
 
     /**

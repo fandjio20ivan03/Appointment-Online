@@ -20,13 +20,13 @@ class LoginController extends Controller
         // On vérifie si les identifiants sont corrects
         if (Auth::attempt(['login' => $request->login, 'password' => $request->password])) {
             $user = Auth()->user();
-            $token = $user->createToken('Voici_ma_cle_secrete')->plainTextToken;
+            // $token = $user->createToken('Voici_ma_cle_secrete')->plainTextToken;
             // Si oui, on redirige vers la page d'accueil avec un message de succès
             return response()->json([
                 "status_code"=> 200,
                 "message"=> "l'utilisateur est connecte",
                 "user"=> $user,
-                "token" => $token
+                // "token" => $token
             ]);
             // return redirect()->route('home')->with('success', "Vous êtes connecté.");
         } else {

@@ -1,0 +1,69 @@
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">{{ origin }}</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group me-2">
+      <button type="button" class="btn btn-sm btn-outline-primary" [routerLink]="['/medecins/ajout-medecin']">
+       <!-- icon + -->
+          Nouveau
+      </button>
+    </div>
+
+    <div class="btn-group me-2">
+      <!-- icon ^ -->
+      <button type="button" class="btn btn-sm btn-outline-success">Exporter</button>
+    </div>
+
+    <button type="button" class="btn btn-sm btn-outline-secondary ">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="feather feather-calendar" aria-hidden="true">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+        <line x1="16" y1="2" x2="16" y2="6"></line>
+        <line x1="8" y1="2" x2="8" y2="6"></line>
+        <line x1="3" y1="10" x2="21" y2="10"></line>
+      </svg>
+      Calendrier
+    </button>
+  </div>
+</div>
+<br/>
+<div class="table-responsive">
+  <table class="table table-hover  table-sm">
+    <thead>
+      <tr>
+        <th scope="col">Matricule</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Prenom</th>
+        <th scope="col">T&eacute;l&eacute;phone</th>
+        <th scope="col">Adresse Email</th>
+        <th scope="col">Ville</th>
+        <th scope="col">Date de Naissance</th>
+        <th scope="col">Action &agrave; effectuer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let medecin of medecins | paginate: { itemsPerPage: nombre_par_page , currentPage: p , totalItems: nombre_medecins }">
+        <td>CM-20MHS{{ medecin.id }}</td>
+        <td>{{ medecin.med_nom }}</td>
+        <td>{{ medecin.med_prenom }}</td>
+        <td>{{ medecin.med_tel }}</td>
+        <td>{{ medecin.med_email }}</td>
+        <td>{{ medecin.med_ville }}</td>
+        <td>{{ medecin.med_dateNais }}</td>
+        <td class="col-md-3">
+          <button type="button" class="btn btn-outline-info"  routerLink="/medecins/info-medecin/{{ medecin.id }}" >Infos</button>
+          &nbsp;
+          <button type="button" class="btn btn-outline-primary"  routerLink="/medecins/edit-medecin/{{ medecin.id }}" >Update</button>
+          &nbsp;
+          <button type="button" class="btn btn-outline-danger" (click)="deleteMedecinData(medecin.id)">Delete</button>
+        </td>
+      </tr>
+      <tr *ngIf="medecins?.length === 0">
+        <td colspan="8" class="text-center">Pas de données trouvées</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+ <pagination-controls class="text-center" [maxSize]="7" (pageChange)="pageChanged(p = $event)"  *ngIf="medecins?.length > 0"></pagination-controls>

@@ -1,0 +1,16 @@
+<!-- Le formulaire de définition des plages horaires -->
+<form [formGroup]="calendrierForm" (ngSubmit)="onSubmit()">
+
+  <!-- Le calendrier interactif -->
+  <mat-calendar formControlName="date"></mat-calendar>
+
+  <!-- Le champ de saisie pour l'heure -->
+  <mat-form-field>
+    <mat-label>Heure</mat-label>
+    <input matInput type="time" formControlName="heure">
+  </mat-form-field>
+
+  <!-- Le bouton Envoyer -->
+  <button mat-raised-button type="submit">Envoyer</button>
+
+</form>

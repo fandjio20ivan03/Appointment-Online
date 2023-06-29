@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Medecin;
+use App\Http\Requests\Medecin\MedecinRequest;
+// use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\Request;
 
 class MedecinController extends Controller
@@ -12,31 +14,31 @@ class MedecinController extends Controller
      */
     public function index()
     {
-
+        //je retourne ici tous les patients de notre table avec un response json pour consommer en api en front-end
+        return response()->json(Medecin::all(), 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create(MedecinRequest $request)
     {
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(MedecinRequest $request)
     {
-        //
+         //fonction me permettant de sauvegarde les informations envoyer par le patient dans la base de donnees
+         $request = $request->except($request->_token);
+         Medecin::create($request);
+         return response()->json(['message' => 'la creation a reussit avec succes'], 200);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Medecin $medecin)
+    public function show($id)
     {
-        //
+        $medecin = Medecin::find($id);
+        if(empty($medecin))
+        {
+            return response()->json(["message" => "medecin introuvable"], 404);
+        }
+        return response()->json($medecin,200);
     }
 
     /**
@@ -44,22 +46,61 @@ class MedecinController extends Controller
      */
     public function edit(Medecin $medecin)
     {
-        //
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Medecin $medecin)
+    public function update(MedecinRequest $request, $id)
     {
-        //
+        $medecin = Medecin::find($id);
+        if(empty($medecin))
+        {
+            return response()->json(["message" => "medecin introuvable"],404);
+        }
+
+        $medecin->update($request->all());
+        $medecin->save();
+        return response()->json(['message' => 'modification du medecin effectue avec succes'],200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Medecin $medecin)
+    public function destroy($id)
     {
-        //
+        $medecin = Medecin::find($id);
+        if(empty($medecin))
+        {
+            return response()->json(["massage" => "medecin introuvable"],404);
+        }
+        $medecin->delete();
+        return response()->json(["massage" => "bonne suppression du medecin"],200);
     }
+
+
+    public function getPageMedecin(Request $request)
+    {
+        // dd($request);
+        $pagination = 9;
+        $page = $request->input('page');
+        $data = Medecin::paginate($pagination, ['*'],'page',$page);
+        return response()->json(['data' => $data->Items(),'total' => $data->total()],200);
+    }
+
+    public function getMedecinsBySearch(Request $request)
+    {
+        $search = $request->input('search');
+
+        $medecins = Medecin::where('med_nom', 'LIKE', '%'.$search.'%')->orWhere('med_prenom', 'LIKE', '%'.$search.'%')->orWhere('med_ville', 'LIKE', '%'.$search.'%')->get();
+        
+        if(empty($medecins->items)){
+
+            return response()->json($medecins,200);
+            
+        }else{
+            
+            return response()->json(['message' => 'introuve'],201);
+        }
+
+    }
+
+
+
 }
+

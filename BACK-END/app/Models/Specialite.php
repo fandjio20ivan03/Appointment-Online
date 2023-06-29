@@ -13,6 +13,6 @@ class Specialite extends Model
 
     public function medecins()
     {
-        return $this->hasMany(Medecin::class); // Définit une relation hasOne avec le modèle Medecin
+        return $this->hasMany(Medecin::class);
     }
 }
