@@ -22,7 +22,7 @@ class PatientFactory extends Factory
                 "pat_ville" => fake()->city(),
                 "pat_dateNais" => fake()->date(),
                 "pat_email" => fake()->safeEmail(),
-                "pat_tel" => fake()->phoneNumber()
+                "pat_tel" => fake()->phoneNumber(),
         ];
     }
 }

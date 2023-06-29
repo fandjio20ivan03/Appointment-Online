@@ -1,0 +1,73 @@
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">{{ origin }}</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group me-2">
+      <button type="button" class="btn btn-sm btn-outline-primary" [routerLink]="['/medecins/ajout-medecin']">
+       <!-- icon + -->
+          Nouveau
+      </button>
+    </div>
+  </div>
+</div>
+<br/>
+
+<form method="post"  (ngSubmit)="updateData()">
+  <h4 class="pb-1">Veillez modifier ces informations:</h4>
+  <div *ngIf="list_error != null" class="fs-5 alert alert-danger" role="alert">{{ list_error.message }}</div>
+  <div class="row pb-1 form-group responsive-group-input">
+    <div class="col">
+      <label for="nom" class="fs-5 font-weight-bold">Entrez le Nom</label><span class="text-danger fs-5"> *</span>
+      <input type="text" id="nom" class="form-control" placeholder="Nom" name="med_nom" [(ngModel)]="medecin.med_nom">
+      <p *ngIf="list_error != null" class="text-danger">{{ list_error.errorList.med_nom }}</p>
+    </div>
+    <div class="col">
+      <label for="prenom" class="fs-5 font-weight-bold">Entrez le Prenom</label><span class="text-danger fs-5"> *</span>
+      <input type="text" id="prenom" class="form-control" placeholder="Prenom" name="med_prenom" [(ngModel)]="medecin.med_prenom">
+      <p *ngIf="list_error != null" class="text-danger" >{{ list_error.errorList.med_prenom }}</p>
+    </div>
+  </div>
+  <div class="row pb-1 form-group responsive-group-input">
+    <div class="col">
+      <label for="email" class="fs-5">Entrez l'adresse Email</label><span class="text-danger fs-5"> *</span>
+      <input type="email" id="email" class="form-control"   name="med_email"  [(ngModel)]="medecin.med_email">
+      <p *ngIf="list_error != null" class="text-danger" >{{ list_error.errorList.med_email }}</p>
+    </div>
+    <div class="col">
+      <label for="tel" class="fs-5 font-weight-bold">Entrez le Numero de telephone</label><span class="text-danger fs-5"> *</span>
+      <input type="text"  id="tel" class="form-control" placeholder="Numero de telephone" name="med_tel"  [(ngModel)]="medecin.med_tel">
+      <p *ngIf="list_error != null" class="text-danger" >{{ list_error.errorList.med_tel }}</p>
+    </div>
+  </div>
+  <div class="row pb-1 form-group responsive-group-input">
+    <div class="col">
+      <label for="specialite_id" class="fs-5">Choisir une specialit&eacute;</label><span class="text-danger fs-5"> *</span>
+      <select class="custom-select form-control" id="specialite_id" name="specialite_id"  [(ngModel)]="medecin.specialite_id">
+        <!-- <option value="" selected> Auncun choix </option> -->
+        <option *ngFor="let spacialite of spacialites" value="{{ spacialite.id }}" > {{ spacialite.spec_nom }}  </option>
+      </select>
+      <p *ngIf="list_error != null" class="text-danger" >{{ list_error.errorList.specialite_id }}</p>
+    </div>
+    <div class="col">
+      <label for="as" class="fs-5 font-weight-bold">Entrez ...</label><span class="text-danger fs-5"> *</span>
+      <input type="text" id="as" class="form-control" name="as">
+      <p *ngIf="list_error != null" class="text-danger">{{ list_error.errorList.med_dateNais }}</p>
+    </div>
+  </div>
+  <div class="row pb-3 form-group responsive-group-input">
+    <div class="col">
+      <label for="ville" class="fs-5">Entrez la ville de Residence</label><span class="text-danger fs-5"> *</span>
+      <input type="text" id="ville" class="form-control" placeholder="ville" name="med_ville" [(ngModel)]="medecin.med_ville">
+      <p *ngIf="list_error != null" class="text-danger" >{{ list_error.errorList.med_ville }}</p>
+    </div>
+    <div class="col">
+      <label for="dateNais" class="fs-5 font-weight-bold">Entrez la date de Naissance</label><span class="text-danger fs-5"> *</span>
+      <input type="date" id="dateNais" class="form-control" name="med_dateNais"  [(ngModel)]="medecin.med_dateNais">
+      <p *ngIf="list_error != null" class="text-danger">{{ list_error.errorList.med_dateNais }}</p>
+    </div>
+  </div>
+  <input type="submit" value="Mettre &agrave; jour" class="btn btn-primary" style=" float: right;">
+</form>
+
+
+

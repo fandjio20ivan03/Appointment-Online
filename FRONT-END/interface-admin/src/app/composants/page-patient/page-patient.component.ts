@@ -18,23 +18,15 @@ constructor(private dataService: DataService, private activatedRoute: ActivatedR
 ngOnInit(): void {
   //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
   //Add 'implements OnInit' to the class.
-
   this.activatedRoute.data.subscribe( data => {
   this.origin = data['origin'];
   });
-
   this.getPatientData();
-
 }
 getPatientData(){
-  console.log('listes des patients');
-  this.dataService.getData().subscribe(res =>{
-    console.log(res);
+  this.dataService.getDataPatient().subscribe(res =>{
     this.patients = res;
   })
 }
-
-
-
 
 }
