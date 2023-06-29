@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Patient;
 
+use App\Rules\CameroonCity;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -28,7 +29,7 @@ class   CreatePatientRequest extends FormRequest
 
             'pat_nom' => 'required|string|max:100',
             'pat_prenom' => 'required|string|max:100',
-            'pat_ville' => 'required|string|validate',
+            'pat_ville' => ['required', 'string', new CameroonCity],
             'pat_dateNais' => 'required|date|before:today',
             'pat_email' => 'required|email|unique:patients,pat_email',
             'pat_tel' => 'required|string'
@@ -54,6 +55,9 @@ class   CreatePatientRequest extends FormRequest
             'pat_tel.required' => 'le champs numero de telephone est obligatoire',
             'pat_tel.string' => 'le numero entrer ne possede pas l\'identifiant d\'un pays',
             // 'pat_tel.regex' => 'ce numero de telephone n\'est pas valide',
+
+            'pat_ville.required' => 'le champs ville est obligatoire',
+            'pat_ville.string' => 'le valeur entrer n\'est pas une chaine de caractere',
         ];
     }
 

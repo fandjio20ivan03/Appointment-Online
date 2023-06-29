@@ -22,7 +22,21 @@ class CameroonCity implements ValidationRule
             'Bamenda',
             'Bafoussam',
             'Garoua',
-            // Ajoutez d'autres villes ici
+            'Maroua',
+            'Ngaoundéré',
+            'Kumba',
+            'Loum',
+            'Mbouda',
+            'Bertoua',
+            'Eséka',
+            'Foumban',
+            'Kribi',
+            'Limbé',
+            'Nkongsamba',
+            'Sangmélima',
+            'Tiko',
+            'Wum',
+            'Dschang'
         ];
 
         if (!in_array($value, $cities)) {
@@ -30,8 +44,5 @@ class CameroonCity implements ValidationRule
         }
     }
 
-    //    public function message()
-    //    {
-    //        return 'Le champ :attribute doit être une ville du Cameroun.';
-    //    }
+
 }
