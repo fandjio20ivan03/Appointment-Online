@@ -1,0 +1,26 @@
+<app-menu></app-menu>
+  <main>
+      <div class="p-5 col section-tittle h2">
+        <div class="row h2">
+          <p> Choisissez une heure pour votre rendez-vous:</p>
+        </div>
+        <div class="row p-5">
+          <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th></th>
+              <th *ngFor="let hour of hours">{{ hour }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let day of days">
+              <th>{{ day }}</th>
+              <td *ngFor="let hour of hours">
+                <input type="checkbox" (change)="handleCheckboxChange(day, hour)">
+              </td>
+            </tr>
+          </tbody>
+          </table>
+        </div>
+      </div>
+</main>
