@@ -13,6 +13,7 @@ class SpecialiteController extends Controller
     public function index()
     {
         //
+        return response()->json(Specialite::all(),200);
     }
 
     /**
@@ -29,14 +30,21 @@ class SpecialiteController extends Controller
     public function store(Request $request)
     {
         //
+        Specialite::create($request->all());
+      return response()->json(['message' => 'specialite cree avec success'],200);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Specialite $specialite)
+    public function show(Specialite $id)
     {
         //
+        $specialite = Specialite::find($id);
+        if(is_null($specialite)){
+           return response()->json(['message'=>'la specialte introuvale'],404);
+        }
+        return response()->json(Specialite::find($id),200);
     }
 
     /**
@@ -50,16 +58,36 @@ class SpecialiteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Specialite $specialite)
+    public function update(Request $request, $id)
     {
         //
+
+        $specialite = Specialite::find($id);
+
+        if(empty($specialite))
+        {
+            return response()->json(['message' => 'specialite introuvable'],404);
+        }
+        $specialite->spec_nom = $request->spec_nom;
+        $specialite->medecin_id = $request->medecin_id;
+        $specialite->save();
+        return response()->json(['message' => 'specialite mis a jour'],200);
     }
 
     /**
      * Remove the specified resource from storage.
+     *
      */
-    public function destroy(Specialite $specialite)
+
+    public function destroy($id)
     {
         //
+        $specialite = Specialite::find($id);
+        if(empty($specialite))
+        {
+            return response()->json(['message'=>'Specialite introuvable'],404);
+        }
+        $specialite->delete();
+        return response()->json(['message' => 'suppression effectuer'],200);
     }
 }

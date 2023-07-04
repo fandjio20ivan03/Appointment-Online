@@ -84,7 +84,7 @@ class RendezVousController extends Controller
         }
         $rendez_vous->delete();
         // dd('ok');
-        return response(null,204);
+        return response()->json(['message'=> 'rendez_vous supprimer'], 200);
     }
 
 }
