@@ -1,38 +1,28 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { P404Component } from './p404/p404.component';
-import { AcceuilComponent } from './components/acceuil/acceuil.component';
-import { DefaultLayoutComponent } from './containers/default-layout/default-layout.component';
-import { Planningcomponent } from './components/planning/planning.component';
+import { PagePlanningComponent } from './composants/page-planning/page-planning.component';
+import { PageAcceuilComponent } from './composants/page-acceuil/page-acceuil.component';
+import { PageExceptionComponent } from './composants/page-exception/page-exception.component';
 
-export const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'acceuil',
-    pathMatch: 'full'
-  },
-  {
-    path: '',
-    component: DefaultLayoutComponent,
-    children: [
+ const routes: Routes = [
       {
-        path: 'acceuil',
-        component: AcceuilComponent
+        path: '',
+        component: PageAcceuilComponent
       },
       {
         path: 'planning',
-        component: Planningcomponent
+        component: PagePlanningComponent
       },
       {
-        path: '404',
-        component: P404Component
+        path: 'exception',
+        component: PageExceptionComponent
       },
-    ]
-  },
-  {
-    path: '**',
-    component: P404Component
-  }
+      {
+        path: '**',
+        component: P404Component
+      }
+
 ];
 
 @NgModule({

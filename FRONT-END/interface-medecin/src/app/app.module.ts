@@ -1,29 +1,31 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { Planningcomponent } from './components/planning/planning.component';
-import { AcceuilComponent } from './components/acceuil/acceuil.component';
 import { P404Component } from './p404/p404.component';
-import { DefaultLayoutComponent } from './containers/default-layout/default-layout.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
-
+import { MenuComponent } from './composants/menu/menu.component';
+import { PageAcceuilComponent } from './composants/page-acceuil/page-acceuil.component';
+import { PagePlanningComponent } from './composants/page-planning/page-planning.component';
+import { PageExceptionComponent } from './composants/page-exception/page-exception.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { FooterComponent } from './composants/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
-    Planningcomponent,
-    AcceuilComponent,
     P404Component,
-    DefaultLayoutComponent,
-    HeaderComponent,
+    MenuComponent,
+    PageAcceuilComponent,
+    PagePlanningComponent,
+    PageExceptionComponent,
     FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    // FormControlName
+    CommonModule,
+    NgxDatatableModule,
   ],
   exports: [RouterModule],
   providers: [],
