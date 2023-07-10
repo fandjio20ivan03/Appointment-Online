@@ -5,8 +5,10 @@ use App\Http\Controllers\MedecinController;
 use App\Http\Controllers\CalendrierController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\RendezVousController;
 use App\Http\Controllers\SpecialiteController;
 use App\Models\Medecin;
+use App\Models\Rendez_vous;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 //supp
@@ -56,6 +58,11 @@ Route::prefix('calendrier')->name('calendrier.')->group(function (){
 
 });
 
+
+
+
+
+// CRUD patient
 Route::prefix('patient')->name('patient.')->group(function () {
     //afficher tous les patients
     Route::get('/', [PatientController::class, 'index'])->name('index');
@@ -89,14 +96,25 @@ Route::prefix('medecins')->name('medecin.')->group(function () {
     //modifier les informations d'un patient dans la base de donnee
     Route::put('/update/{id}', [MedecinController::class, 'update'])->name('update');
 
-    //
+    //retourner un medecin specifique
     Route::get('/show/{id}', [MedecinController::class, 'show'])->name('show');
 
     //supprimer un patient de la base de donnee grace a sont identifiant
     Route::delete('/delete/{id}', [MedecinController::class, 'destroy'])->name('delete');
+
+    //retourner les donnee medecins par page
+    Route::get('/medecins-page', [MedecinController::class, 'getPageMedecin']);
+
+
+    //recherche d'un medecin: dans le cas ou l'admin recherche un medecin specifique
+    Route::get('/medecins-search', [MedecinController::class, 'getMedecinsBySearch']);
+
 });
 
 
+
+
+//CRUD specialite
 Route::prefix('specialites')->group(function (){
     //afficher tous les specialtites
     Route::get('/', [SpecialiteController::class, 'index'])->name('index');
@@ -106,12 +124,14 @@ Route::prefix('specialites')->group(function (){
 });
 
 
-// Route::get('/test',function (){
-//     dd( ((Specialite::all()->pluck('id')->toArray()))[array_rand(Specialite::all()->pluck('id')->toArray())]);
-//     return response()->json([array_rand(Specialite::all()->pluck('id')->toArray())],200);
-// });
 
 
-Route::get('/medecins-page', [MedecinController::class, 'getPageMedecin']);
+//CRUD rendez_vous
 
-Route::get('/medecins-search', [MedecinController::class, 'getMedecinsBySearch']);
+Route::prefix('rendez-vous')->group( function (){
+    //afficher tous les rendez-vous
+    Route::get('/',[RendezVousController::class, 'index'])->name('index');
+
+    //retourner l'ensemble de rendez-vous deja programme
+    Route::get('/total',[RendezVousController::class, 'total_rendez_vous'])->name('total_rendez_vous');
+});

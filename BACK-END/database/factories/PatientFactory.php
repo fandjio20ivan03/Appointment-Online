@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -23,6 +24,9 @@ class PatientFactory extends Factory
                 "pat_dateNais" => fake()->date(),
                 "pat_email" => fake()->safeEmail(),
                 "pat_tel" => fake()->phoneNumber(),
+                "user_id" => (User::all()->pluck('id')->toArray())[array_rand(User::all()->pluck('id')->toArray())],
+
+
         ];
     }
 }

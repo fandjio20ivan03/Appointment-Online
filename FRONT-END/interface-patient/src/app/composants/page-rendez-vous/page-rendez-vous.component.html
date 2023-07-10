@@ -4,6 +4,8 @@
         <div class="row h2">
           <p> Choisissez une heure pour votre rendez-vous:</p>
         </div>
+
+
         <div class="row p-5">
           <table class="table table-bordered">
           <thead>
@@ -15,12 +17,17 @@
           <tbody>
             <tr *ngFor="let day of days">
               <th>{{ day }}</th>
-              <td *ngFor="let hour of hours">
-                <input type="checkbox" (change)="handleCheckboxChange(day, hour)">
+              <td class="ass" *ngFor="let hour of hours" >
+                <input  type="checkbox" (change)="convertDay(day)">
               </td>
             </tr>
           </tbody>
           </table>
         </div>
       </div>
-</main>
+      <!-- <button (click)="convertDay('aass')">Convertir en date</button> -->
+
+
+
+
+    </main>

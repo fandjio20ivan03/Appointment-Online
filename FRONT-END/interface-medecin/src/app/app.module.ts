@@ -11,6 +11,8 @@ import { PagePlanningComponent } from './composants/page-planning/page-planning.
 import { PageExceptionComponent } from './composants/page-exception/page-exception.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FooterComponent } from './composants/footer/footer.component';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +26,7 @@ import { FooterComponent } from './composants/footer/footer.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     CommonModule,
     NgxDatatableModule,
   ],

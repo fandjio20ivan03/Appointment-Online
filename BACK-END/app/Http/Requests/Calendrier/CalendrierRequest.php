@@ -27,7 +27,7 @@ class CalendrierRequest extends FormRequest
                 // j'effectue une verification sur les differents attributs de ma table patient
             'date' => 'required | date',
             'heure_debut' => 'required | before:'.$this->input('heure_fin'),  // $validator en param de la mothode json pour recupere les messages appropries
-            'heure_fin' => 'required | date_format:H:i:s'
+            'heure_fin' => 'required'
         ];
     }
 
@@ -39,9 +39,7 @@ class CalendrierRequest extends FormRequest
             'date.date' => 'la date doit etre une date valide',
             'heure_dabut.required' => 'l\'heure de debut est obligatoire',
             'heure_debut.before' => 'l\'heure de debut doit etre avant celui de fin',
-            'heure_debut.date_format' => 'l\'heure de debut doit etre valide',
             'heure_fin.required' => 'l\'heure de fin est obligatoire',
-            'heure_fin.date_format' => 'l\'heure de fin doit etre valide'
         ];
     }
 

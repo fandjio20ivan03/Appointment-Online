@@ -7,18 +7,31 @@ use Illuminate\Http\Request;
 
 class RendezVousController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
+    * Display a listing of the resource.
      */
-    //1er facon de faire
-    // public function index()
-    // {
-    //     $rdv = Rendez_vous::all();
-    //     return response()->json([
-    //         'message'=>"La liste des rendez_vous",
-    //         'data' => $rdv
-    //     ]);
-    // }
+
+    public function index()
+    {
+        $rdv = Rendez_vous::all();
+        return response()->json([
+            'message'=>"La liste des rendez_vous",
+            'data' => $rdv
+        ]);
+    }
+
+
+    public function total_rendez_vous(){
+        $total  = Rendez_vous::all()->count();
+        return response()->json([$total],200);
+    }
+
+
+
+
+
+
 
     // //2 facon de faire
     // public function index2(Rendez_vous $rdv) {

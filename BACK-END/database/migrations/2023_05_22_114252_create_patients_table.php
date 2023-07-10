@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('pat_prenom');
             $table->string('pat_ville');
             $table->date('pat_dateNais');
+            $table->string('pat_email')->unique();
             $table->string('pat_tel')->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();

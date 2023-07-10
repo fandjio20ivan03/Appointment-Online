@@ -14,11 +14,6 @@ class SpecialiteSeeder extends Seeder
     public function run(): void
     {
         DB::table('specialites')->insert([
-            'spec_nom' => 'dentiste',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ],
-        [
             'spec_nom' => 'othtamologe',
             'created_at' => now(),
             'updated_at' => now(),

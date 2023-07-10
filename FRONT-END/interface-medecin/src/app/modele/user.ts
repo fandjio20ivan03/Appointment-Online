@@ -10,4 +10,5 @@ export class User {
     this.sexe=sexe;
     this.age=age;
   }
+
 }

@@ -12,7 +12,7 @@ export class DataService {
 
 // consomation cote medecin
   getMedecinBySearch(text_search:any){
-    return this.httpClient.get(`http://127.0.0.1:8000/api/medecins-search?search=${text_search}`);
+    return this.httpClient.get(`http://127.0.0.1:8000/api/medecins/medecins-search?search=${text_search}`);
   }
 
   deleteDataMedecin(id: any){
@@ -21,7 +21,7 @@ export class DataService {
 
 
   getDataMedecinPage(page:number){
-    return this.httpClient.get(`http://127.0.0.1:8000/api/medecins-page?page=${page}`);
+    return this.httpClient.get(`http://127.0.0.1:8000/api/medecins/medecins-page?page=${page}`);
   }
 
 

@@ -8,6 +8,7 @@ import { MenuComponent } from './composants/menu/menu.component';
 import { PageRendezVousComponent } from './composants/page-rendez-vous/page-rendez-vous.component';
 import { HttpClientModule } from '@angular/common/http';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
