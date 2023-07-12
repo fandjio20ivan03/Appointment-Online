@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('calendriers', function (Blueprint $table) {
             $table->id();
-            $table->date('date');       
+            $table->date('date');
             $table->time('heure_debut');
             $table->time('heure_fin');
+            $table->foreignId('medecin_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
