@@ -1,6 +1,6 @@
 (function ($)
   { "use strict"
-  
+
 /* 1. Proloder */
     $(window).on('load', function () {
       $('#preloader-active').delay(450).fadeOut('slow');
@@ -28,7 +28,7 @@
       }, 800);
       return false;
     });
-  
+
 
 /* 3. slick Nav */
 // mobile_menu
@@ -58,7 +58,7 @@
         autoplaySpeed: 5000,
         dots: false,
         fade: true,
-        arrows: false, 
+        arrows: false,
         prevArrow: '<button type="button" class="slick-prev"><i class="ti-angle-left"></i></button>',
         nextArrow: '<button type="button" class="slick-next"><i class="ti-angle-right"></i></button>',
         responsive: [{
@@ -170,7 +170,7 @@
 /* 10. WOW active */
     new WOW().init();
 
-// 11. ---- Mailchimp js --------//  
+// 11. ---- Mailchimp js --------//
     function mailChimp() {
       $('#mc_embed_signup').find('form').ajaxChimp();
     }
@@ -217,7 +217,7 @@
     }
     var timerdate = mm + '/' + dd + '/' + yyyy;
     // For demo preview end
-    
+
 
     // Use this for real timer date
     /*  var timerdate = "2020/01/01"; */
@@ -228,7 +228,7 @@
 
 
 
-    
+
 /* 14. Datepicker */
   $('#datepicker1').datepicker();
 

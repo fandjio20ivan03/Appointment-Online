@@ -12,11 +12,11 @@
 </div>
 <br/>
 
-
 <form method="post" (ngSubmit)="insertDataMedecin()">
   <h4 class="pb-1">Veillez entrer ces informations:</h4>
-  <div *ngIf="list_error != null" class="fs-5 alert alert-danger" role="alert">{{ list_error.message }}</div>
-
+  <div *ngIf="list_error != null" class="fs-5 alert alert-danger" role="alert">
+    {{ list_error.message }}
+  </div>
   <div class="row pb-1 form-group responsive-group-input">
     <div class="col">
       <label for="nom" class="fs-5 font-weight-bold">Entrez le Nom</label><span class="text-danger fs-5"> *</span>
@@ -45,7 +45,7 @@
     <div class="col">
       <label for="specialite_id" class="fs-5">Choisir une specialit&eacute;</label><span class="text-danger fs-5"> *</span>
       <select class="custom-select form-control" id="specialite_id" name="specialite_id"  [(ngModel)]="medecin.specialite_id">
-        <!-- <option value="" selected> Auncun choix </option> -->
+        <option selected> Auncun choix </option>
         <option *ngFor="let spacialite of spacialites" value="{{ spacialite.id }}" > {{ spacialite.spec_nom }}  </option>
       </select>
       <p *ngIf="list_error != null" class="text-danger" >{{ list_error.errorList.specialite_id }}</p>

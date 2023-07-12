@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TableColumn } from '@swimlane/ngx-datatable';
-import { Calendrier } from 'src/app/modele/calendrier';
+import { Calendrier } from 'src/app/modeles/calendrier';
 import { DataCalendrierService } from 'src/app/services/data-calendrier.service';
 
 @Component({
@@ -14,6 +14,8 @@ import { DataCalendrierService } from 'src/app/services/data-calendrier.service'
 export class PagePlanningComponent {
 
   constructor(private dataCalendrerService: DataCalendrierService, private router: Router) { }
+
+  // aucune_donnee:any;
 
   // declaration des variables
   calendrier = new Calendrier();
@@ -91,8 +93,8 @@ export class PagePlanningComponent {
 
 
       // calendier qui va naviger de comp planning a exception
-      const index = this.calendrier_data_jour.findIndex(date => date.day === jour &&  date.hour === heure);
-       if (index !== -1) {
+      const index = this.calendrier_data_jour.findIndex(date => date.day === jour && date.hour === heure);
+      if (index !== -1) {
         // si il y a une date fixe, on la retire de la liste des dates
         this.calendrier_data_jour.splice(index, 1);
         console.log(this.calendrier_data_jour);
@@ -134,7 +136,7 @@ export class PagePlanningComponent {
   }
 
   getDayIndex(jour: string): number {
-    console.log(jour);
+
     switch (jour) {
       case 'lundi':
         return 1;
@@ -157,27 +159,44 @@ export class PagePlanningComponent {
 
 
   // fonction qui sera appele lord de la validation de l'emploi de temps pour l'insertion de l'emploi de temp dans la base de donnee
+  // rep en parametre represente la reponse recupere du modal soit 1 = oui, soit 2 = non
+  chargerCalendrier(rep: number) {
 
-  chargerCalendrier() {
+    if (this.calendrier_data.length !== 0) {
 
-    this.calendrier_data.forEach((data: any) => {
-      this.calendrier.date = data.day;
-      this.calendrier.heure_debut = data.start_hour;
-      this.calendrier.heure_fin = data.end_hour;
-      this.dataCalendrerService.insertDataCalendrier(this.calendrier).subscribe(res => {
-        console.log(res.status);
-        if (res.status === 201) {
-          console.log("Erreur d'insertion dans back-end verifier si il est bien demarre ou qu'il n y pas d'erreur de donnees");
-          return
-        }
-      });
-    });
+          this.calendrier_data.forEach((data: any) => {
+            this.calendrier.date = data.day;
+            this.calendrier.heure_debut = data.start_hour;
+            this.calendrier.heure_fin = data.end_hour;
+            this.dataCalendrerService.insertDataCalendrier(this.calendrier).subscribe(res => {
+              console.log(res.status);
+              if (res.status === 201) {
+                console.log("Erreur d'insertion dans back-end verifier si il est bien demarre ou qu'il n y pas d'erreur de donnees");
+                return
+              }
+            });
+          });
 
-    // bonne insertion
-    console.log("bonne insertion");
-    this.dataCalendrerService.calendrier = this.calendrier_data_jour;
-    this.router.navigate(['/exception']);
+          // bonne insertion
+          console.log("bonne insertion");
+
+          // verification si rep = 1 = oui, si c;est le cas on redirige l'utilisateur vers la page des exceptions
+          if (rep === 1) {
+
+            this.dataCalendrerService.calendrier = this.calendrier_data_jour;
+            this.router.navigate(['/exception']);
+
+          } else {
+            // verification si rep != 1 c'est a dire 2 = non , si c'est le cas on redirige l'utilisateur vers la page de confirmation
+
+            this.router.navigate(['/confirmation']);
+          }
+
+    }else{
+
+        // this.aucune_donnee = 'Vous devez choisir au moins un jour';
+        alert('Vous devez choisir au moins un jour');
+    }
+
   }
-
-
 }

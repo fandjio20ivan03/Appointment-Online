@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 class RendezVousController extends Controller
 {
 
+    public static  $ancienne_valeur = 90;
+
     /**
     * Display a listing of the resource.
      */
@@ -22,9 +24,28 @@ class RendezVousController extends Controller
     }
 
 
-    public function total_rendez_vous(){
+    public function getTotalRendezVous(){
         $total  = Rendez_vous::all()->count();
-        return response()->json([$total],200);
+        return response()->json($total,200);
+    }
+
+
+
+    // retourner l'augmentation des rendez-vous
+
+    public function getAugmentationRendezVous(){
+
+        $nouvelle_valeur = Rendez_vous::all()->count();
+
+        // dd(RendezVousController::$ancienne_valeur);
+
+        // $augmentation = ($nouvelle_valeur - RendezVousController::$ancienne_valeur)/ RendezVousController::$ancienne_valeur * 100;
+        $augmentation = ((($nouvelle_valeur - RendezVousController::$ancienne_valeur)) / 100) * 100;
+
+
+        // dd($augmentation,$nouvelle_valeur, RendezVousController::$ancienne_valeur);
+
+        return response()->json($augmentation,200);
     }
 
 
@@ -86,8 +107,23 @@ class RendezVousController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Rendez_vous $rendez_vous)
+    public function destroy($id)
     {
-        //
+        $this->ancienne_valeur = Rendez_vous::all()->count();
+
+        $patient = Rendez_vous::find($id);
+        if(empty($patient))
+        {
+            return response()->json(["massage" => "rendez-vous introuvable"],404);
+        }
+
+        $patient->delete();
+        return response()->json(["massage" => "bonne suppression du rendez-vous"],200);
+
+
     }
+
+
+
 }
+

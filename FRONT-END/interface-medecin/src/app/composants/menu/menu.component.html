@@ -7,8 +7,9 @@
           <!-- Logo -->
           <div class="col-xl-2 col-lg-2 col-md-1">
             <div class="logo">
-              <a class="nav-link" [routerLink]="['/']" [routerLinkActive]="['active']" aria-current="page"><img
-                  src="assets/img/logo/logo.png" alt=""></a>
+              <a class="nav-link" [routerLink]="['/']" aria-current="page">
+                <img src="assets/img/logo/logo.png" alt="">
+              </a>
             </div>
           </div>
           <div class="col-xl-10 col-lg-10 col-md-10">
@@ -17,10 +18,13 @@
               <div class="main-menu f-right d-none d-lg-block">
                 <nav>
                   <ul id="navigation">
-                    <li><a class="nav-link" [routerLink]="['/']" [routerLinkActive]="['active']"
-                        aria-current="page">Acceuil</a></li>
-                        <li><a href="department.html">Department</a></li>
-                        <li><a href="about.html" title="about">A propos</a></li>
+                    <li>
+                      <a routerLink="/" routerLinkActive="active"  aria-current="page">
+                        Acceuil
+                      </a>
+                    </li>
+                    <li><a href="department.html">Rendez-vous</a></li>
+                    <!-- <li><a href="about.html" title="about">A propos</a></li> -->
                     <li><a href="blog.html">Blog</a>
                       <ul class="submenu">
                         <li><a href="blog.html">Blog</a></li>

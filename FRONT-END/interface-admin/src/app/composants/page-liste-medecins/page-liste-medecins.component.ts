@@ -41,7 +41,7 @@
 import { formatCurrency } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Medecin } from 'src/app/medecin';
+import { Medecin } from 'src/app/modeles/medecin';
 import { DataService } from 'src/app/services/data.service';
 import { PageDashbordComponent } from '../page-dashbord/page-dashbord.component';
 
@@ -66,7 +66,7 @@ export class PageListeMedecinsComponent implements OnInit{
       this.getMedecinData(1);
     });
   }
-  
+
 
   // fonction permettant de recuperer les donne des medecins par pages
   getMedecinData(page:number){
@@ -81,7 +81,7 @@ export class PageListeMedecinsComponent implements OnInit{
 }
 
 
-// fonction permettant de faire un changement de page par la pagination 
+// fonction permettant de faire un changement de page par la pagination
 
 pageChanged(event:any) {
   console.log(event);

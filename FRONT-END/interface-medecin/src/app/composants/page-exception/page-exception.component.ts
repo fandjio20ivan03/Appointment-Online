@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { TableColumn, elementsFromPoint } from '@swimlane/ngx-datatable';
+import { TableColumn, elementsFromPoint, emptyStringGetter } from '@swimlane/ngx-datatable';
 import { Router } from '@angular/router';
+import { Exception } from 'src/app/modeles/exception';
+import { DataExceptionService } from 'src/app/services/data-exception.service';
 import { DataCalendrierService } from 'src/app/services/data-calendrier.service';
-import { Calendrier } from 'src/app/modele/calendrier';
 
 @Component({
   selector: 'app-page-exception',
@@ -11,16 +12,18 @@ import { Calendrier } from 'src/app/modele/calendrier';
 })
 export class PageExceptionComponent implements OnInit {
 
+  name: string | undefined;
+
   // calendrier sous format lundi,mardi,mercredi,...
   calendrier_data_jour: any[] = [];
 
-  // type calendrier permettant de transferer les donnee d'exception. il a ete encore utilise ici parce que calendirer et exception possedent les memes proprietes
-  calendrier = new Calendrier()
+  // type exception permettant de transferer les donnee d'exception.
+  exception = new Exception()
 
   //exception sous format aaaa-mm-jj
   exception_data: any[] = [];
 
-  constructor(private dataCalendrerService: DataCalendrierService, private router:Router) {}
+  constructor(private dataCalendrerService: DataCalendrierService, private dataExceptionService: DataExceptionService, private router: Router) { }
 
 
   schedule: { [key: string]: any }[] = [];
@@ -66,16 +69,11 @@ export class PageExceptionComponent implements OnInit {
               // ici, decoche les cases qui etataient coches precedement
               const tmp = element.day;
               rowData[tmp.toLowerCase()] = true;
-              break
             }
           }
         }
-
-
       }
-
       this.schedule.push(rowData);
-
     }
 
   }
@@ -89,27 +87,27 @@ export class PageExceptionComponent implements OnInit {
 
   onCheckboxChange(event: any, heure: string, jour: string) {
 
+    const formattedStartTime = this.formatStartTime(heure);  //permetant de convertir le jour de xxh00 en xx:00
+    const formattedEndTime = this.formatEndTime(heure); //permetant de convertir le jour de xxh00 en xx:00
+    const format_aaa_mm_jj = this.convertDay(jour);   // permettant de convertir le jour en format aaaa/mm/jj
+
+
     if (event.target.checked) {
-      const formattedStartTime = this.formatStartTime(heure);  //permetant de convertir le jour de xxh00 en xx:00
-      const formattedEndTime = this.formatEndTime(heure); //permetant de convertir le jour de xxh00 en xx:00
-      const format_aaa_mm_jj = jour;   // permettant de convertir le jour en format aaaa/mm/jj
+
       const selectedDate = { day: format_aaa_mm_jj, start_hour: formattedStartTime + ':00', end_hour: formattedEndTime + ':00' };
       this.exception_data.push(selectedDate);
 
     } else {
 
-      const formattedStartTime = this.formatStartTime(heure);  //permetant de convertir le jour de xxh00 en xx:00
-      const formattedEndTime = this.formatEndTime(heure); //permetant de convertir le jour de xxh00 en xx:00
-      const format_aaa_mm_jj = jour;    // permettant de convertir le jour en format aaaa/mm/jj
-
       // verifie si il ya deja une date fixe
       const index = this.exception_data.findIndex(date => date.day === format_aaa_mm_jj && date.start_hour === formattedStartTime + ':00' && date.end_hour === formattedEndTime + ':00');
+
       if (index !== -1) {
         // si il y a une date fixe, on la retire de la liste des dates
-
         this.exception_data.splice(index, 1);
       }
     }
+    console.log(this.exception_data);
   }
 
   // permet de transformer une heure xxh a xx
@@ -147,7 +145,7 @@ export class PageExceptionComponent implements OnInit {
   }
 
   getDayIndex(jour: string): number {
-    console.log(jour);
+
     switch (jour) {
       case 'lundi':
         return 1;
@@ -168,15 +166,15 @@ export class PageExceptionComponent implements OnInit {
     }
   }
 
-
-  // fonction qui sera appele lord de la validation de les exceptions pour l'insertion de l'emploi de temp dans la base de donnee
-  chargerCalendrier() {
+  // fonction qui sera appele lors de la validation de les exceptions pour l'insertion de l'emploi de temp dans la base de donnee
+  chargerException() {
 
     this.exception_data.forEach((data: any) => {
-      this.calendrier.date = data.day;
-      this.calendrier.heure_debut = data.start_hour;
-      this.calendrier.heure_fin = data.end_hour;
-      this.dataCalendrerService.insertDataCalendrier(this.calendrier).subscribe(res => {
+      this.exception.date = data.day;
+      this.exception.heure_debut = data.start_hour;
+      this.exception.heure_fin = data.end_hour;
+      this.exception.validite_id = 1;
+      this.dataExceptionService.insertDataCalendrier(this.exception).subscribe((res: any) => {
         console.log(res.status);
         if (res.status === 201) {
           console.log("Erreur d'insertion dans back-end verifier si il est bien demarre ou qu'il n y pas d'erreur de donnees");
@@ -187,8 +185,9 @@ export class PageExceptionComponent implements OnInit {
 
     // bonne insertion
     console.log("bonne insertion");
-    this.dataCalendrerService.calendrier = this.calendrier_data_jour;
-    this.router.navigate(['/exception']);
+    this.router.navigate(['/confirmation']);
+
+
   }
 
 

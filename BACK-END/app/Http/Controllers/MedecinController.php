@@ -62,6 +62,7 @@ class MedecinController extends Controller
         return response()->json(['message' => 'modification du medecin effectue avec succes'],200);
     }
 
+
     public function destroy($id)
     {
         $medecin = Medecin::find($id);
@@ -72,6 +73,7 @@ class MedecinController extends Controller
         $medecin->delete();
         return response()->json(["massage" => "bonne suppression du medecin"],200);
     }
+
 
 
     public function getPageMedecin(Request $request)
@@ -88,17 +90,23 @@ class MedecinController extends Controller
         $search = $request->input('search');
 
         $medecins = Medecin::where('med_nom', 'LIKE', '%'.$search.'%')->orWhere('med_prenom', 'LIKE', '%'.$search.'%')->orWhere('med_ville', 'LIKE', '%'.$search.'%')->get();
-        
+
         if(empty($medecins->items)){
 
             return response()->json($medecins,200);
-            
+
         }else{
-            
+
             return response()->json(['message' => 'introuve'],201);
         }
 
     }
+
+    public function getTotalMedecin(){
+        $total = Medecin::all()->count();
+        return response()->json($total,200);
+    }
+
 
 
 

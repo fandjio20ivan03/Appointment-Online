@@ -14,6 +14,8 @@ import { PageAjoutMedecinComponent } from './composants/page-ajout-medecin/page-
 import { PageListeMedecinsComponent } from './composants/page-liste-medecins/page-liste-medecins.component';
 import { PageEditMedecinComponent } from './composants/page-edit-medecin/page-edit-medecin.component';
 import { PageInfoMedecinComponent } from './composants/page-info-medecin/page-info-medecin.component';
+import { FooterComponent } from './composants/footer/footer.component';
+import { P404Component } from './p404/p404/p404.component';
 
 
 
@@ -28,7 +30,9 @@ import { PageInfoMedecinComponent } from './composants/page-info-medecin/page-in
     PageAjoutMedecinComponent,
     PageListeMedecinsComponent,
     PageEditMedecinComponent,
-    PageInfoMedecinComponent
+    PageInfoMedecinComponent,
+    FooterComponent,
+    P404Component
   ],
   imports: [
     BrowserModule,

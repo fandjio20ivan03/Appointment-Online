@@ -1,6 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Calendrier } from '../modele/calendrier';
+import { Calendrier } from '../modeles/calendrier';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -18,9 +18,13 @@ export class DataCalendrierService {
     return this.httpClient.get('http://127.0.0.1:8000/api/calendrier');
   }
 
+  //insertion de l'ensemble des jours du calendrier
   insertDataCalendrier(data: Calendrier): Observable<HttpResponse <any>>{
     return this.httpClient.post('http://127.0.0.1:8000/api/calendrier',data, {observe: 'response'});
   }
+
+
+  //
 
 
 }

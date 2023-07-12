@@ -12,6 +12,8 @@ import { PageExceptionComponent } from './composants/page-exception/page-excepti
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FooterComponent } from './composants/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { PageConfirmationComponent } from './composants/page-confirmation/page-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     PageAcceuilComponent,
     PagePlanningComponent,
     PageExceptionComponent,
-    FooterComponent
+    FooterComponent,
+    PageConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     CommonModule,
     NgxDatatableModule,
+    FormsModule,
   ],
   exports: [RouterModule],
   providers: [],

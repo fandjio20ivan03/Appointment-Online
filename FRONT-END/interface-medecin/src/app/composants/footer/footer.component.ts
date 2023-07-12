@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
 
+  annee = new Date().getFullYear();
+
+
+  to_top(){
+    const scrollDuration = 300;
+const scrollStep = -window.scrollY / (scrollDuration / 15);
+
+
+}
 }

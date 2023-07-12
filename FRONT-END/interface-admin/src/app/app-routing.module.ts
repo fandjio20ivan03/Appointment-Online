@@ -8,6 +8,7 @@ import { PageListeMedecinsComponent } from './composants/page-liste-medecins/pag
 import { PageEditMedecinComponent } from './composants/page-edit-medecin/page-edit-medecin.component';
 import { PageInfoMedecinComponent } from './composants/page-info-medecin/page-info-medecin.component';
 import { PageMedecinComponent } from './composants/page-medecin/page-medecin.component';
+import { P404Component } from './p404/p404/p404.component';
 
 
 const routes: Routes = [
@@ -24,7 +25,10 @@ const routes: Routes = [
       },
       {
           path: 'statistique',
-          component: PageStatistiqueComponent
+          component: PageStatistiqueComponent,
+          data: {
+            origin:'Statistiques sur l\'ensemble des activités'
+          }
       },
       {
           path: 'patients',
@@ -68,6 +72,10 @@ const routes: Routes = [
         ]
       }
     ]
+  },
+  {
+    path:'**',
+    component:P404Component,
   }
 ];
 
