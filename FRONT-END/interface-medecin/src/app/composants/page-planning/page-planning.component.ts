@@ -91,7 +91,6 @@ export class PagePlanningComponent {
         this.calendrier_data.splice(index_aaaa, 1);
       }
 
-
       // calendier qui va naviger de comp planning a exception
       const index = this.calendrier_data_jour.findIndex(date => date.day === jour && date.hour === heure);
       if (index !== -1) {
@@ -99,8 +98,6 @@ export class PagePlanningComponent {
         this.calendrier_data_jour.splice(index, 1);
         console.log(this.calendrier_data_jour);
       }
-
-
     }
     // console.log(this.calendrier_data);
   }

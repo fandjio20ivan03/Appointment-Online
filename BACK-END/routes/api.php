@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MedecinController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CalendrierController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\RegisterController;
@@ -24,8 +25,6 @@ use App\Models\Specialite;
 */
 
 
-// Route::post('register', [UserController::class, 'register']);
-// Route::post('login', [UserController::class, 'login']);
 
 // Route pour l'enregistrement d'un utilisateur
 Route::post('/register', [RegisterController::class, 'register']);
@@ -36,9 +35,33 @@ Route::middleware('auth:sanctum')->post('/user', function (Request $request) {
 });
 
 
+// CRUD sur admin
+Route::prefix('admins')->group(function () {
+    //afficher tous les admins
+    Route::get('/', [AdminController::class, 'index']);
+
+    //enregistree les informations d'un admin dans la base de donnee
+    Route::post('/', [AdminController::class, 'store']);
+
+    //modifier les informations d'un admin dans la base de donnee
+    Route::put('/update/{id}', [AdminController::class, 'update']);
+
+    //retourner un admin specifique
+    Route::get('/show/{id}', [AdminController::class, 'show']);
+
+    //supprimer un admin de la base de donnee grace a sont identifiant
+    Route::delete('/delete/{id}', [AdminController::class, 'destroy']);
+
+});
+
+
+
+
+
+
 // CRUD  sur le Calendrier
 
-Route::prefix('calendrier')->name('calendrier.')->group(function (){
+Route::prefix('calendrier')->group(function (){
 
     // afficher le calendrier
     Route::get('/',[CalendrierController::class, 'index']);
@@ -62,12 +85,9 @@ Route::prefix('calendrier')->name('calendrier.')->group(function (){
 
 
 // CRUD patient
-Route::prefix('patients')->name('patient.')->group(function () {
+Route::prefix('patients')->group(function () {
     //afficher tous les patients
     Route::get('/', [PatientController::class, 'index']);
-
-    //
-    // Route::get('/create', [StudentController::class, 'create'])->name('create');
 
     //enregistree les informations d'un patient dans la base de donnee
     Route::post('/', [PatientController::class, 'store']);
@@ -92,7 +112,7 @@ Route::prefix('patients')->name('patient.')->group(function () {
 
 
 
-Route::prefix('medecins')->name('medecin.')->group(function () {
+Route::prefix('medecins')->group(function () {
     //afficher tous les patients
     Route::get('/', [MedecinController::class, 'index']);
 

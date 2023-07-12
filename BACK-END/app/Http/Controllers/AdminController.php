@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
-use App\Models\Patient;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -13,23 +12,23 @@ class AdminController extends Controller
      */
 
 
-    public function index_patient()
+    public function index()
     {
-        $patients = Patient::all();
-        return response()->json($patients,200);
+        $admins = Admin::all();
+        return response()->json($admins,200);
     }
 
-    public function index_medecin()
-    {
 
-    }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+         //fonction me permettant de sauvegarde les informations de l'admin
+         $request = $request->except($request->_token);
+         Admin::create($request);
+         return response()->json(['message' => 'la creation a reussit avec succes'], 200);
     }
 
     /**
@@ -43,9 +42,14 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Admin $admin)
+    public function show($id)
     {
-        //
+        $admin = Admin::find($id);
+        if(empty($admin))
+        {
+            return response()->json(["message" => "medecin introuvable"], 404);
+        }
+        return response()->json($admin,200);
     }
 
     /**
@@ -59,16 +63,31 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request, $id)
     {
-        //
+        $admin = Admin::find($id);
+        if(empty($admin))
+        {
+            return response()->json(["message" => "medecin introuvable"],404);
+        }
+
+        $admin->update($request->all());
+        $admin->save();
+        return response()->json(['message' => 'modification de l\'admin effectue avec succes'],200);
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Admin $admin)
+    public function destroy($id)
     {
-        //
+        $admin = Admin::find($id);
+        if(empty($admin))
+        {
+            return response()->json(["massage" => "admin introuvable"],404);
+        }
+        $admin->delete();
+        return response()->json(["massage" => "bonne suppression de l'admin"],200);
     }
 }
