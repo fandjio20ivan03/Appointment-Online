@@ -23,6 +23,7 @@ class User extends Authenticatable
         'login',
         'password',
         'type',
+        'remember_token'
     ];
 
     public function patient()
@@ -58,16 +59,8 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        // 'email_verified_at' => 'datetime',
+        // 'password' => 'hashed',
     ];
-// Donne moi trois facon d'ecrire ce code
-    // public function type():Attribute{
 
-    //     return new Attribute(
-    //         get: function ($value) {
-    //             return  ["patient", "medecin", "admin"][$value];
-    //         }
-    //     );
-    // }
 }

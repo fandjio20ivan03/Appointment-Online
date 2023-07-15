@@ -17,15 +17,8 @@ class registerRequest extends FormRequest
     {
         return true;
     }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
-     */
     public function rules(): array
     {
-
          return [
             'login' => 'required|unique:users',
             'password' => 'required|min:5',
@@ -45,8 +38,6 @@ class registerRequest extends FormRequest
             'adm_prenom' => 'required_if:type,2',
             'adm_ville' => 'required_if:type,2',
             'adm_dateNais' => 'required_if:type,2|date',
-            // adm_email est supprimé car il n'est pas dans la table admins
-            // adm_email' => 'required_if:type,2|unique:users,email',
             'adm_tel' => 'required_if:type,2',
          ];
     }
