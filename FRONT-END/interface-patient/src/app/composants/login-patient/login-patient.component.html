@@ -1,0 +1,18 @@
+<app-menu></app-menu>
+
+<div class="container">
+  <form (submit)="login()" >
+    <div class="row col-md-6">
+      <label for="login">Login</label>
+      <input type="text" id="login" name="login" class="form-control" required [(ngModel)]="loginData.login">
+    </div>
+    <div class="row col-md-6">
+      <label for="password" >Mot de passe</label>
+      <input type="password" id="password" class="form-control" name="password" required [(ngModel)]="loginData.password">
+    </div>
+    <div class="row col-md-6">
+      <button type="submit" class="btn btn-primary">Se connecter</button>
+    </div>
+    <div *ngIf="error" style="color: red;">{{ error }}</div>
+  </form>
+</div>

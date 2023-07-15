@@ -17,36 +17,27 @@ class registerRequest extends FormRequest
     {
         return true;
     }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
-     */
     public function rules(): array
     {
-
          return [
             'login' => 'required|unique:users',
             'password' => 'required|min:5',
             'type' => 'required|in:0,1,2',
-            'pat_nom' => 'required_if:type,0',
-            'pat_prenom' => 'required_if:type,0',
+            'pat_nom' => 'required_if:type,0|min:3|max:100',
+            'pat_prenom' => 'required_if:type,0|min:3|max:100',
             'pat_ville' => 'required_if:type,0',
-            'pat_dateNais' => 'required_if:type,0|date',
+            'pat_dateNais' => 'required_if:type,0|date_format:d/m/Y',
             'pat_tel' => 'nullable',
             'med_nom' => 'required_if:type,1',
             'med_prenom' => 'required_if:type,1',
             'med_ville' => 'required_if:type,1',
-            'med_dateNais' => 'required_if:type,1|date',
+            'med_dateNais' => 'required_if:type,1|date_format:d/m/Y',
             'med_tel' => 'required_if:type,1',
             'specialite_id' => 'required_if:type,1|exists:specialites,id',
             'adm_nom' => 'required_if:type,2',
             'adm_prenom' => 'required_if:type,2',
             'adm_ville' => 'required_if:type,2',
-            'adm_dateNais' => 'required_if:type,2|date',
-            // adm_email est supprimé car il n'est pas dans la table admins
-            // adm_email' => 'required_if:type,2|unique:users,email',
+            'adm_dateNais' => 'required_if:type,2|date_format:d/m/Y',
             'adm_tel' => 'required_if:type,2',
          ];
     }
@@ -54,7 +45,7 @@ class registerRequest extends FormRequest
     public function failedValidation(Validator $validator) {
         throw new HttpResponseException(response()->json([
             "status_code" => 422,
-            "massage" => "Erreur de validation",
+            "message" => "Erreur de validation",
             "errorList "=> $validator->errors()
         ]));
     }
@@ -65,12 +56,10 @@ class registerRequest extends FormRequest
             'nom.required'=>'Veillez entrer un nom',
             'nom.min'=>'Le nom doit faire au moins 3 caracteres',
             'nom.max'=>'Le nom ne doit pas depasser 100 caracteres',
-            'nom.unique'=>'Ce nom est deja utiliser',
 
             'prenom.required'=>'Veillez entrer un prenom',
             'prenom.min'=>'Le nom doit faire au moins 3 caracteres',
             'prenom.max'=>'Le nom ne doit pas depasser 100 caracteres',
-            'prenom.unique'=>'Ce nom est deja utiliser',
 
             'date_de_naissance.required'=>'Velleiz Entrer une date de naissance',
             'date_de_naissance.date_format'=>"Entrer une date valide (d/m/y)",
@@ -86,8 +75,8 @@ class registerRequest extends FormRequest
 
 
             'login.required'=>'Veillez entrer un login',
-            // 'login.min'=>'Le nom doit faire au moins 5 caracteres',
-            // 'login.max'=>'Le nom doit faire au moins 100 caracteres',
+            'login.min'=>'Le nom doit faire au moins 5 caracteres',
+            'login.max'=>'Le nom doit faire au moins 100 caracteres',
             'login.unique'=>"Ce login est deja utilise",
 
             'password.required'=>'veillez votre mot de passe',
