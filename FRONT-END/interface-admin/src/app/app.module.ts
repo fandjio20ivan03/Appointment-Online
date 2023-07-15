@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgxPaginationModule } from 'ngx-pagination';
+// import { NgxPaginationModule } from 'ngx-pagination';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageDashbordComponent } from './composants/page-dashbord/page-dashbord.component';
@@ -14,6 +14,7 @@ import { PageAjoutMedecinComponent } from './composants/page-ajout-medecin/page-
 import { PageListeMedecinsComponent } from './composants/page-liste-medecins/page-liste-medecins.component';
 import { PageEditMedecinComponent } from './composants/page-edit-medecin/page-edit-medecin.component';
 import { PageInfoMedecinComponent } from './composants/page-info-medecin/page-info-medecin.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -35,7 +36,7 @@ import { PageInfoMedecinComponent } from './composants/page-info-medecin/page-in
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgxPaginationModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

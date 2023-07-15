@@ -23,9 +23,6 @@ use App\Models\Specialite;
 */
 
 
-// Route::post('register', [UserController::class, 'register']);
-// Route::post('login', [UserController::class, 'login']);
-
 // Route pour l'enregistrement d'un utilisateur
 Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/login', [LoginController::class, 'login']);
@@ -97,7 +94,7 @@ Route::prefix('medecins')->name('medecin.')->group(function () {
 });
 
 
-Route::prefix('specialites')->group(function (){
+Route::prefix('specialites')->name('specialites.')->group(function (){
     //afficher tous les specialtites
     Route::get('/', [SpecialiteController::class, 'index'])->name('index');
 
@@ -105,11 +102,6 @@ Route::prefix('specialites')->group(function (){
     Route::get('/show/{id}', [SpecialiteController::class, 'show'])->name('show');
 });
 
-
-// Route::get('/test',function (){
-//     dd( ((Specialite::all()->pluck('id')->toArray()))[array_rand(Specialite::all()->pluck('id')->toArray())]);
-//     return response()->json([array_rand(Specialite::all()->pluck('id')->toArray())],200);
-// });
 
 
 Route::get('/medecins-page', [MedecinController::class, 'getPageMedecin']);
