@@ -31,10 +31,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/assets/css/style.css",
-              "src/assets/css/responsive.css",
-              "src/assets/css/jquery.mCustomScrollbar.min.css"
+              "./node_modules/@swimlane/ngx-datatable/themes/bootstrap.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/all.css"
             ],
             "scripts": []
           },
@@ -65,7 +63,7 @@
           },
           "defaultConfiguration": "production"
         },
-        "serve": {
+      "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {

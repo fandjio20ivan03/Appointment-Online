@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('validites', function (Blueprint $table) {
             $table->id();
-            $table->time('duree');
+            $table->unsignedBigInteger('semaine')->unique();
             $table->timestamps();
         });
     }

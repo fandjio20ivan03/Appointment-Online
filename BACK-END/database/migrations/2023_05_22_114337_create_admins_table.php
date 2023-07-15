@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('adm_dateNais');
             $table->string('adm_email')->unique();
             $table->string('adm_tel')->unique();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

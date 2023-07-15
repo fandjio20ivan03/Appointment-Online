@@ -18,30 +18,30 @@
     </button>
   </div>
 </div>
-<br/>
+<br />
 <div class="table-responsive">
-  <table class="table table-striped table-hover table-sm">
-    <thead>
+  <table class="table table-hover table-sm">
+    <thead class="text-white bg-dark fs-6">
       <tr>
         <th scope="col">#</th>
         <th scope="col">Nom</th>
         <th scope="col">Prenom</th>
-        <th scope="col">Ville</th>
-        <th scope="col">Numero de telephone</th>
+        <th scope="col">T&eacute;l&eacute;phone</th>
         <th scope="col">Adresse Email</th>
-        <th scope="col">Numero de telephone</th>
-        <th scope="col">Action &aacute; effectuer</th>
+        <th scope="col">Ville</th>
+        <th scope="col">Date de Naissance</th>
+        <th scope="col" class="text-center">Action &agrave; effectuer</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let patient of patients">
+      <tr *ngFor="let patient of patients  | paginate: { itemsPerPage: nombre_par_page , currentPage: p , totalItems: nombre_patients }">
         <td>{{ patient.id }}</td>
         <td>{{ patient.pat_nom }}</td>
         <td>{{ patient.pat_prenom }}</td>
-        <td>{{ patient.pat_ville }}</td>
-        <td>{{ patient.pat_date_Nais }}</td>
-        <td>{{ patient.pat_email }}</td>
         <td>{{ patient.pat_tel }}</td>
+        <td>{{ patient.pat_email }}</td>
+        <td>{{ patient.pat_ville }}</td>
+        <td>{{ patient.pat_dateNais }}</td>
         <td class="col-md-3">
           <button type="button" class="btn btn-outline-info">Infos</button>
           &nbsp;
@@ -54,3 +54,6 @@
     </tbody>
   </table>
 </div>
+
+<pagination-controls class="text-center" [maxSize]="7" (pageChange)="pageChanged(p = $event)"
+  *ngIf="patients?.length > 0"></pagination-controls>

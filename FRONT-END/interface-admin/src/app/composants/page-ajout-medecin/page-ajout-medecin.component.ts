@@ -1,7 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Medecin } from 'src/app/medecin';
+import { Medecin } from 'src/app/modeles/medecin';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({

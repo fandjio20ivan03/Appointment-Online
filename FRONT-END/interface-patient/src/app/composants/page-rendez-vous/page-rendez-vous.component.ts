@@ -5,6 +5,14 @@ import { Calendrier } from 'src/app/modeles/calendrier';
 import { CalenderService } from 'src/app/services/calender.service';
 import { DataService } from 'src/app/services/data.service';
 
+enum Jours{
+  Lundi = 'Monday',
+  // Mardi
+}
+
+
+
+
 @Component({
   selector: 'app-page-rendez-vous',
   templateUrl: './page-rendez-vous.component.html',
@@ -205,76 +213,8 @@ getDayIndex(jour: string): number {
 
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // ngOnInit(): void {
-  //   // this.dataService.getDataCalendrier().subscribe( res =>{
-  //   //   this.data = res;
-  //   //   console.log(this.days);
-  //   // });
-
-  //   this.columns = [
-  //     { name: 'Horaire', prop: 'heure', sortable: false, width: 130 },
-  //     { name: 'Lundi', prop: 'lundi', headerCheckboxable: true, checkboxable: true, sortable: false, canAutoResize: true,  width: 100  },
-  //     { name: 'Mardi', prop: 'mardi', headerCheckboxable: true, checkboxable: true, sortable: false, width: 100},
-  //     { name: 'Mercredi', prop: 'mercredi', headerCheckboxable: true, checkboxable: true, sortable: false, width: 100},
-  //     { name: 'Jeudi', prop: 'jeudi', headerCheckboxable: true, checkboxable: true, sortable: false, width: 100 },
-  //     { name: 'Vendredi', prop: 'vendredi', headerCheckboxable: true, checkboxable: true, sortable: false, width: 100 },
-  //     { name: 'Samedi', prop: 'samedi', headerCheckboxable: true, checkboxable: true, sortable: false, width: 100 },
-  //     { name: 'Dimanche', prop: 'dimanche', headerCheckboxable: true, checkboxable: true, sortable: false, width: 100 },
-  //   ];
-
-  //   for (let heure of this.heures) {
-  //     this.data.push({ heure: heure });
-  //   }
-
-
-
-
-  // }
-
-  // onClickCheckBox(event: any): void{
-  //   console.log('bonjour');
-  //   // this.selectedRows.push(event.selected);
-  //   // console.log(this.selectedRows);
-  // }
-
-
 }
+
+
+
+

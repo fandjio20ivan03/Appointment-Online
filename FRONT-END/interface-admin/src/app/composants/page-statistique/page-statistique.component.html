@@ -1,3 +1,55 @@
-<br/>
- Graphes a
-ajouter
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">{{ origin }}</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <!-- <div class="btn-group me-2">
+      <button type="button" class="btn btn-sm btn-outline-primary" [routerLink]="['/medecins/ajout-medecin']">
+        Nouveau
+      </button> -->
+    <!-- </div> -->
+  </div>
+</div>
+<br />
+<h4 class="pb-1">Informations du <i class="text-muted"> {{ jour }} </i>
+</h4>
+<div class="fs-6 pt-5">
+  <div class="row pb-1 form-group responsive-group-input" style="padding-bottom: 10%; ">
+    <div class="col">
+      <span class="card text-white bg-success mb-3 rounded-0" style="min-width: 40%;">
+        <span class="card-header fs-5">Nombre de rendez-vous</span>
+        <span class="card-body">
+          <p class="card-text text-bold fs-1"><i>{{ total_rendez_vous }}</i></p>
+        </span>
+      </span>
+    </div>
+    <div class="col">
+      <span class="card text-white bg-secondary mb-3 rounded-0" style="min-width: 40%">
+        <span class="card-header fs-5">Nombre de medecins</span>
+        <span class="card-body">
+          <p class="card-text fs-1"><i> {{ total_medecin }} </i></p>
+        </span>
+      </span>
+    </div>
+  </div>
+
+  <div class="row pb-3 form-group responsive-group-input">
+    <div class="col">
+      <span class="card text-white bg-dark mb-3 rounded-0" style="min-width: 50%; max-height:100%;">
+        <span class="card-header fs-5">Nombre de patients</span>
+        <span class="card-body">
+          <p class="card-text fs-1"><i> {{ total_patient }}</i>
+          </p>
+        </span>
+      </span>
+    </div>
+    <div class="col">
+      <span class="card text-white bg-primary mb-3 rounded-0" style="min-width: 50%">
+        <span class="card-header fs-5">Augmentation du nombre de rendez-vous</span>
+        <span class="card-body">
+          <p class="card-text fs-1">
+            <i>{{ augmentation_rendez_vous }}<small>%</small></i>
+          </p>
+        </span>
+      </span>
+    </div>
+  </div>
+</div>

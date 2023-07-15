@@ -1,0 +1,79 @@
+<app-menu></app-menu>
+<main>
+  <div class="slider-area2">
+    <div class="slider-height2 d-flex align-items-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-12">
+            <div class="hero-cap hero-cap2 text-center">
+              <h2>Vos rendez-vous</h2>
+              <p class="mt-25" style="font-size:20px">
+                Ensemble de rendez-vous que vous avez avec les patients.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="single-slider slider-height align-items-center pt-60">
+    <div class="container">
+      <div class="row" style="margin-right: -47px">
+        <div class="col-xl-7 col-lg-9 col-md-8 col-sm-9 pb-20">
+          <h2 style="font-size: 20px; display: block ruby;">Ensemble de rendez-vous que vous avez avec les patients.
+          </h2>
+        </div>
+      </div>
+      <div class="col" style="font-size: 18px;">
+
+        <div class="table-responsive">
+          <table class="table table-hover table-sm text-center">
+            <thead class="text-white bg-dark fs-6">
+              <tr>
+                <th scope="col">No</th>
+                <th scope="col">Date</th>
+                <th scope="col">Heure de debut</th>
+                <th scope="col">heure de fin</th>
+                <th scope="col">nom & prenom patient</th>
+                <th scope="col">téléphone patient</th>
+                <th scope="col" class="text-center">Action &agrave; effectuer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let rdv of rendez_vous_data | paginate: { itemsPerPage: nombre_par_page , currentPage: p , totalItems: nombre_rendez_vous }">
+                <td>{{ rdv.id }}</td>
+                <td>{{ rdv.date }}</td>
+                <td>{{ rdv.heure_debut }}</td>
+                <td>{{ rdv.heure_fin }}</td>
+                <td>{{ rdv.patient.pat_nom }} &nbsp; {{ rdv.patient.pat_prenom }}</td>
+                <td>{{ rdv.patient.pat_tel }}</td>
+                <td class="col-md-3 text-center">
+                  &nbsp;
+                  <button type="button" class="btn btn-outline-primary taille_btn">Me rappeller !!!</button>
+                </td>
+              </tr>
+              <tr *ngIf="rendez_vous_data?.length === 0">
+                <td colspan="8" class="text-center">Pas de données trouvées</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <pagination-controls class="text-center" [maxSize]="7" (pageChange)="pageChanged(p = $event)"
+          *ngIf="rendez_vous_data?.length > 0"></pagination-controls>
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+</main>
+<app-footer></app-footer>

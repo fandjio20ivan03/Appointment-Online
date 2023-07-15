@@ -1,0 +1,22 @@
+.table-responsive{
+  display:flex;
+  flex-direction:column;
+  overflow-x:auto;
+}
+
+
+@media (max-width: 575px){
+  .text-responsive{
+    font-size:15px;
+    line-height:24px;
+  }
+
+  .table-responsive{
+    height:50%;
+    flex-direction:row;
+   overflow-y:auto;
+   padding-right:9%;
+  }
+  
+
+}

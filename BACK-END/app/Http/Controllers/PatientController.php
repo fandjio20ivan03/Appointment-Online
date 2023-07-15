@@ -90,4 +90,25 @@ class PatientController extends Controller
         return response()->json(['message' => 'le patient a ete supprimer', 200]);
     }
 
+
+    // fonction permettant de renvoyer l'ensemble des patients
+    public function getTotalPatient()
+    {
+        $total = Patient::all()->count();
+        return response()->json($total, 200);
+    }
+
+
+    //fonction permettant de renvoyer l'ensemble des patients par pages
+
+    public function getPagePatient(Request $request)
+    {
+        $pagination = 9;
+        $page = $request->input('page');
+        $data = Patient::paginate($pagination, ['*'],'page',$page);
+        return response()->json(['data' => $data->Items(),'total' => $data->total()],200);
+    }
+
+
+
 }

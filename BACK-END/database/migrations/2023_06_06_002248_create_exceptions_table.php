@@ -16,7 +16,8 @@ return new class extends Migration
             $table->date('date');
             $table->time('heure_debut');
             $table->time('heure_fin');
-            $table->foreignId('validite_id')->constrained()->onDelete('cascade');
+            $table->foreignId('validite_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('medecin_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

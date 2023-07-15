@@ -21,9 +21,9 @@ class Calendrier extends Model
     }
 
 
-    public function medecins()
+    public function medecin()
     {
-        return $this->hasMany(Medecin::class);
+        return $this->belongsTo(Medecin::class);
     }
 
 

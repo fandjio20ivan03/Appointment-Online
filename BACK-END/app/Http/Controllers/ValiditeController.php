@@ -12,7 +12,8 @@ class ValiditeController extends Controller
      */
     public function index()
     {
-        //
+        $validites = Validite::all();
+        return response()->json($validites,200);
     }
 
     /**
@@ -28,7 +29,11 @@ class ValiditeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //fonction me permettant de sauvegarde les informations  dans la base de donnees
+        $request = $request->except($request->_token);
+        Validite::create($request);
+        return response()->json(['message' => 'la creation a reussit avec succes'], 200);
+
     }
 
     /**

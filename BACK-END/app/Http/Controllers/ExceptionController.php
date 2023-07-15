@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Exception;
 use Illuminate\Http\Request;
+use App\Http\Requests\Calendrier\CalendrierRequest;
 
 class ExceptionController extends Controller
 {
@@ -12,15 +13,16 @@ class ExceptionController extends Controller
      */
     public function index()
     {
-        //
+        $exception = Exception::all();
+        return response()->json($exception,200);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(CalendrierRequest $request)
     {
-        //
+
     }
 
     /**
@@ -28,7 +30,11 @@ class ExceptionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validation des donnees de la requete
+       $request = $request->except($request->_token);
+       Exception::create($request);
+       return response()->json(["message" => "date ajoutés avec succes"],200);
+
     }
 
     /**

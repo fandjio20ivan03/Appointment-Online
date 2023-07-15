@@ -14,7 +14,12 @@ import { PageAjoutMedecinComponent } from './composants/page-ajout-medecin/page-
 import { PageListeMedecinsComponent } from './composants/page-liste-medecins/page-liste-medecins.component';
 import { PageEditMedecinComponent } from './composants/page-edit-medecin/page-edit-medecin.component';
 import { PageInfoMedecinComponent } from './composants/page-info-medecin/page-info-medecin.component';
+<<<<<<< HEAD
 import { NgxPaginationModule } from 'ngx-pagination';
+=======
+import { FooterComponent } from './composants/footer/footer.component';
+import { P404Component } from './p404/p404/p404.component';
+>>>>>>> 5fa961d46cc6b1a1bfbcd01d0e7361af40ce0463
 
 
 
@@ -29,7 +34,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     PageAjoutMedecinComponent,
     PageListeMedecinsComponent,
     PageEditMedecinComponent,
-    PageInfoMedecinComponent
+    PageInfoMedecinComponent,
+    FooterComponent,
+    P404Component
   ],
   imports: [
     BrowserModule,

@@ -1,17 +1,19 @@
-
-
-h1{
+h1 {
   margin-top: 10px;
 }
 
-@media screen and (max-width: 576px){
-    .custom-pagination-align{
-        text-align: left !important;
-    }
-    ul{
-        column-count : 2
-    }
-    .live-code{
-       display: none !important;
-    }
+@media screen and (max-width: 576px) {
+  .custom-pagination-align {
+    text-align: left !important;
+  }
+  ul {
+    column-count: 2;
+  }
+  .live-code {
+    display: none !important;
+  }
+  .ass:hover {
+    background-color: rgba(127, 255, 212, 0.315);
+    // text-align: center;
+  }
 }
