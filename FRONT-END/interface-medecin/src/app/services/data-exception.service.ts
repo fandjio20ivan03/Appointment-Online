@@ -14,9 +14,13 @@ export class DataExceptionService {
 
 
   //insertion de l'ensemble des jours du d'exception et la validite
-  insertDataCalendrier(data: Exception): Observable <HttpResponse <any>>{
+  insertDataException(data: Exception): Observable <HttpResponse <any>>{
     return this.httpClient.post('http://127.0.0.1:8000/api/exception',data, {observe: 'response'});
   }
 
+
+  getDataValiditeException(){
+    return this.httpClient.get('http://127.0.0.1:8000/api/validites/');
+  }
 
 }

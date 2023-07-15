@@ -12,6 +12,8 @@ import { DataCalendrierService } from 'src/app/services/data-calendrier.service'
 })
 export class PageExceptionComponent implements OnInit {
 
+  validites: any;
+
   name: string | undefined;
 
   // calendrier sous format lundi,mardi,mercredi,...
@@ -36,11 +38,9 @@ export class PageExceptionComponent implements OnInit {
 
 
   heures = [
-    '1h00 - 2h00', '2h00 - 3h00', '3h00 - 4h00', '4h00 - 5h00', '5h00 - 6h00',
-    '6h00 - 7h00', '7h00 - 8h00', '8h00 - 9h00', '9h00 - 10h00', '10h00 - 11h00',
+    '8h00 - 9h00', '9h00 - 10h00', '10h00 - 11h00',
     '11h00 - 12h00', '12h00 - 13h00', '13h00 - 14h00', '14h00 - 15h00', '15h00 - 16h00',
-    '16h00 - 17h00', '17h00 - 18h00', '18h00 - 19h00', '19h00 - 20h00', '20h00 - 21h00',
-    '21h00 - 22h00', '22h00 - 23h00'
+    '16h00 - 17h00', '17h00 - 18h00', '18h00 - 19h00', '19h00 - 20h00'
   ];
 
   rowData: any;
@@ -75,6 +75,13 @@ export class PageExceptionComponent implements OnInit {
       }
       this.schedule.push(rowData);
     }
+
+    this.exception.medecin_id = 1;
+
+    // recupereation des exceptions
+    this.dataExceptionService.getDataValiditeException().subscribe(res => {
+      this.validites = res;
+    });
 
   }
 
@@ -169,24 +176,26 @@ export class PageExceptionComponent implements OnInit {
   // fonction qui sera appele lors de la validation de les exceptions pour l'insertion de l'emploi de temp dans la base de donnee
   chargerException() {
 
-    this.exception_data.forEach((data: any) => {
-      this.exception.date = data.day;
-      this.exception.heure_debut = data.start_hour;
-      this.exception.heure_fin = data.end_hour;
-      this.exception.validite_id = 1;
-      this.dataExceptionService.insertDataCalendrier(this.exception).subscribe((res: any) => {
-        console.log(res.status);
-        if (res.status === 201) {
-          console.log("Erreur d'insertion dans back-end verifier si il est bien demarre ou qu'il n y pas d'erreur de donnees");
-          return
-        }
+    if (this.exception_data.length !== 0) {
+      this.exception_data.forEach((data: any) => {
+        this.exception.date = data.day;
+        this.exception.heure_debut = data.start_hour;
+        this.exception.heure_fin = data.end_hour;
+        this.dataExceptionService.insertDataException(this.exception).subscribe((res: any) => {
+          // console.log(this.exception);
+          if (res.status === 201) {
+            console.log("Erreur d'insertion dans back-end verifier si il est bien demarre ou qu'il n y pas d'erreur de donnees");
+            return
+          }
+        });
       });
-    });
 
-    // bonne insertion
-    console.log("bonne insertion");
+      // bonne insertion
+      console.log("bonne insertion");
+
+    }
+
     this.router.navigate(['/confirmation']);
-
 
   }
 

@@ -1,0 +1,11 @@
+.taille_btn{
+  width: 60%;
+}
+
+
+@media (max-width: 575px){
+  .taille_btn{
+    width: 50%;
+    font-size: 20px;
+  }
+}

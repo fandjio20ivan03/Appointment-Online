@@ -5,6 +5,7 @@ import { PagePlanningComponent } from './composants/page-planning/page-planning.
 import { PageAcceuilComponent } from './composants/page-acceuil/page-acceuil.component';
 import { PageExceptionComponent } from './composants/page-exception/page-exception.component';
 import { PageConfirmationComponent } from './composants/page-confirmation/page-confirmation.component';
+import { PageRendezVousComponent } from './composants/page-rendez-vous/page-rendez-vous.component';
 
  const routes: Routes = [
       {
@@ -22,6 +23,10 @@ import { PageConfirmationComponent } from './composants/page-confirmation/page-c
       {
         path: 'confirmation',
         component: PageConfirmationComponent
+      },
+      {
+        path:'rendez-vous',
+        component: PageRendezVousComponent
       },
       {
         path: '**',

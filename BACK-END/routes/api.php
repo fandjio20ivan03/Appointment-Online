@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MedecinController;
+use App\Http\Controllers\ValiditeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CalendrierController;
 use App\Http\Controllers\PatientController;
@@ -51,7 +52,6 @@ Route::prefix('admins')->group(function () {
 
     //supprimer un admin de la base de donnee grace a sont identifiant
     Route::delete('/delete/{id}', [AdminController::class, 'destroy']);
-
 });
 
 
@@ -61,23 +61,22 @@ Route::prefix('admins')->group(function () {
 
 // CRUD  sur le Calendrier
 
-Route::prefix('calendrier')->group(function (){
+Route::prefix('calendrier')->group(function () {
 
     // afficher le calendrier
-    Route::get('/',[CalendrierController::class, 'index']);
+    Route::get('/', [CalendrierController::class, 'index']);
 
     //aficher un date specifique du calendrier
-    Route::get('/show/{id}',[CalendrierController::class, 'show']);
+    Route::get('/show/{id}', [CalendrierController::class, 'show']);
 
     //creation d'une date
-    Route::post('/',[CalendrierController::class, 'store']);
+    Route::post('/', [CalendrierController::class, 'store']);
 
     //mise a jour d'une date donnee
     Route::put('/update/{id}', [CalendrierController::class, 'update']);
 
     // supprimer une date du calendrier
-    Route::delete('/delete/{id}',[CalendrierController::class, 'destroy']);
-
+    Route::delete('/delete/{id}', [CalendrierController::class, 'destroy']);
 });
 
 
@@ -106,7 +105,6 @@ Route::prefix('patients')->group(function () {
 
     //retourner les donnee patients par page
     Route::get('/patients-page', [PatientController::class, 'getPagePatient']);
-
 });
 
 
@@ -137,13 +135,17 @@ Route::prefix('medecins')->group(function () {
 
     //pretourner le total des medecins en bd
     Route::get('/total-medecin', [MedecinController::class, 'getTotalMedecin']);
+
+    //retourner les redez-vous d'un medecin
+    Route::get('/rendez-vous/{medecin_id}', [MedecinController::class, 'getRendezVousMedecin']);
 });
 
 
 
 
 //CRUD specialite
-Route::prefix('specialites')->group(function (){
+Route::prefix('specialites')->group(function () {
+
     //afficher tous les specialtites
     Route::get('/', [SpecialiteController::class, 'index']);
 
@@ -156,27 +158,40 @@ Route::prefix('specialites')->group(function (){
 
 //CRUD rendez_vous
 
-Route::prefix('rendez-vous')->group( function (){
+Route::prefix('rendez-vous')->group(function () {
     //afficher tous les rendez-vous
-    Route::get('/',[RendezVousController::class, 'index']);
+    Route::get('/', [RendezVousController::class, 'index']);
 
+    // create d'un rendez-vous avec l'identifiant du medecin
+    Route::post('/{id}',[RendezVousController::class, 'store']);
+  
     //retourner l'ensemble de rendez-vous deja programme
-    Route::get('/total-rendez-vous',[RendezVousController::class, 'getTotalRendezVous']);
+    Route::get('/total-rendez-vous', [RendezVousController::class, 'getTotalRendezVous']);
 
     //retourer l'augmentation de rendez-vous
 
-    Route::get('/augmentation-rendez-vous',[RendezVousController::class, 'getAugmentationRendezVous']);
+    Route::get('/augmentation-rendez-vous', [RendezVousController::class, 'getAugmentationRendezVous']);
 });
 
 
 
-//CRUD rendez_vous
+//CRUD exception
 
-Route::prefix('exception')->group( function (){
+Route::prefix('exception')->group(function () {
 
     Route::get('/', [ExceptionController::class, 'index']);
 
-   //creation d'une date d'exception
-   Route::post('/',[ExceptionController::class, 'store']);
+    //creation d'une date d'exception
+    Route::post('/', [ExceptionController::class, 'store']);
+});
 
+
+
+//CRUD validite
+
+Route::prefix('validites')->group(function () {
+
+    Route::get('/', [ValiditeController::class, 'index']);
+
+    Route::post('/', [ValiditeController::class, 'store']);
 });

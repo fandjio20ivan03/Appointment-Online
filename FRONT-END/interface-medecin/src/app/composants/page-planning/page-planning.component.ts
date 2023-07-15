@@ -15,10 +15,10 @@ export class PagePlanningComponent {
 
   constructor(private dataCalendrerService: DataCalendrierService, private router: Router) { }
 
-  // aucune_donnee:any;
 
   // declaration des variables
   calendrier = new Calendrier();
+
 
   // donnees du calendrier ou le jour est sous format aaaa-mm-jj
   calendrier_data: any[] = [];
@@ -30,11 +30,9 @@ export class PagePlanningComponent {
   schedule: { [key: string]: any }[] = [];
 
   heures = [
-    '1h00 - 2h00', '2h00 - 3h00', '3h00 - 4h00', '4h00 - 5h00', '5h00 - 6h00',
-    '6h00 - 7h00', '7h00 - 8h00', '8h00 - 9h00', '9h00 - 10h00', '10h00 - 11h00',
+    '8h00 - 9h00', '9h00 - 10h00', '10h00 - 11h00',
     '11h00 - 12h00', '12h00 - 13h00', '13h00 - 14h00', '14h00 - 15h00', '15h00 - 16h00',
-    '16h00 - 17h00', '17h00 - 18h00', '18h00 - 19h00', '19h00 - 20h00', '20h00 - 21h00',
-    '21h00 - 22h00', '22h00 - 23h00'
+    '16h00 - 17h00', '17h00 - 18h00', '18h00 - 19h00', '19h00 - 20h00'
   ];
 
   jours = [
@@ -59,6 +57,9 @@ export class PagePlanningComponent {
       }
       this.schedule.push(rowData);
     }
+
+    //identifiant du medecin est recupere par l'auth
+    this.calendrier.medecin_id = 1;
   }
 
 
@@ -161,38 +162,38 @@ export class PagePlanningComponent {
 
     if (this.calendrier_data.length !== 0) {
 
-          this.calendrier_data.forEach((data: any) => {
-            this.calendrier.date = data.day;
-            this.calendrier.heure_debut = data.start_hour;
-            this.calendrier.heure_fin = data.end_hour;
-            this.dataCalendrerService.insertDataCalendrier(this.calendrier).subscribe(res => {
-              console.log(res.status);
-              if (res.status === 201) {
-                console.log("Erreur d'insertion dans back-end verifier si il est bien demarre ou qu'il n y pas d'erreur de donnees");
-                return
-              }
-            });
-          });
-
-          // bonne insertion
-          console.log("bonne insertion");
-
-          // verification si rep = 1 = oui, si c;est le cas on redirige l'utilisateur vers la page des exceptions
-          if (rep === 1) {
-
-            this.dataCalendrerService.calendrier = this.calendrier_data_jour;
-            this.router.navigate(['/exception']);
-
-          } else {
-            // verification si rep != 1 c'est a dire 2 = non , si c'est le cas on redirige l'utilisateur vers la page de confirmation
-
-            this.router.navigate(['/confirmation']);
+      this.calendrier_data.forEach((data: any) => {
+        this.calendrier.date = data.day;
+        this.calendrier.heure_debut = data.start_hour;
+        this.calendrier.heure_fin = data.end_hour;
+        this.dataCalendrerService.insertDataCalendrier(this.calendrier).subscribe(res => {
+          console.log(res.status);
+          if (res.status === 201) {
+            console.log("Erreur d'insertion dans back-end verifier si il est bien demarre ou qu'il n y pas d'erreur de donnees");
+            return
           }
+        });
+      });
 
-    }else{
+      // bonne insertion
+      console.log("bonne insertion");
 
-        // this.aucune_donnee = 'Vous devez choisir au moins un jour';
-        alert('Vous devez choisir au moins un jour');
+      // verification si rep = 1 = oui, si c;est le cas on redirige l'utilisateur vers la page des exceptions
+      if (rep === 1) {
+
+        this.dataCalendrerService.calendrier = this.calendrier_data_jour;
+        this.router.navigate(['/exception']);
+
+      } else {
+        // verification si rep != 1 c'est a dire 2 = non , si c'est le cas on redirige l'utilisateur vers la page de confirmation
+
+        this.router.navigate(['/confirmation']);
+      }
+
+    } else {
+
+      // this.aucune_donnee = 'Vous devez choisir au moins un jour';
+      alert('Vous devez choisir au moins un jour');
     }
 
   }

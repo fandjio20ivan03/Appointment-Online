@@ -1,34 +1,50 @@
 <app-menu></app-menu>
 <main>
-  <div class="single-slider slider-height align-items-center pt-100">
+  <div class="slider-area2">
+    <div class="slider-height2 d-flex align-items-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-12">
+            <div class="hero-cap hero-cap2 text-center">
+              <h2>Emploi de temps</h2>
+              <p class="mt-25" style="font-size:20px"> Definissez votre emploi de temps de travail permettant aux patients de prendre un
+                rendez-vous</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="single-slider slider-height align-items-center pt-60">
     <div class="container">
       <div class="row" style="margin-right: -47px">
         <div class="col-xl-7 col-lg-9 col-md-8 col-sm-9 pb-20">
-          <div class="section-tittle section-tittle2 mb-35">
+          <div class="section-tittle section-tittle2 mb-20">
             <span>Emploi de temps</span>
             <h2 style="font-size: 30px; display: block ruby;">Definissez votre emploi de temps de travail</h2>
           </div>
         </div>
         <div class="col" style="font-size: 18px;">
-          <ngx-datatable class="material table-striped table-bordered table-hover table-responsive mb-100"
-            [rows]="schedule" [columns]="columns" [headerHeight]="70" [cssClasses]="'table table-responsive bootstrap'"
+          <ngx-datatable class="text-responsive table-responsive table-bordered mb-50"
+            [rows]="schedule" [columns]="columns" [headerHeight]="40"
             [reorderable]="false">
             <ngx-datatable-column name="heures \ jours" prop="hour">
               <ng-template let-row="row" class="section-tittle" ngx-datatable-cell-template>
-                <p class="text-center">{{ row.hour }}</p>
+                <p class="text-center text-responsive">{{ row.hour }}</p>
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column *ngFor="let column of columns" [name]="column.name!" [prop]="column.prop!">
               <ng-template let-row="row" ngx-datatable-cell-template>
                 <p class="text-center">
-                  <input type="checkbox" (change)="onCheckboxChange($event, row!.hour, column.prop?.toString()!)"
+                  <input type="checkbox" title="{{ column.name + ',' + row.hour }}"
+                    (change)="onCheckboxChange($event, row!.hour, column.prop?.toString()!)"
                     [checked]="row![column.prop!]">
                 </p>
               </ng-template>
             </ngx-datatable-column>
           </ngx-datatable>
 
-          <button type="button" class="btn  hero-btn float-right mb-100" data-animation="fadeInLeft" data-delay="0.5s"
+          <button type="button" class="btn  hero-btn float-right mb-60" data-animation="fadeInLeft" data-delay="0.5s"
             data-toggle="modal" data-target="#exampleModal">
             valider <i class="ti-arrow-right"></i>
           </button>

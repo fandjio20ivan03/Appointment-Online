@@ -10,10 +10,12 @@ export class FooterComponent {
   annee = new Date().getFullYear();
 
 
-  to_top(){
-    const scrollDuration = 300;
-const scrollStep = -window.scrollY / (scrollDuration / 15);
 
-
-}
+  to_top() {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }
 }

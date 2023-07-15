@@ -109,4 +109,6 @@ class PatientController extends Controller
         return response()->json(['data' => $data->Items(),'total' => $data->total()],200);
     }
 
+
+
 }

@@ -7,8 +7,8 @@
           <!-- Logo -->
           <div class="col-xl-2 col-lg-2 col-md-1">
             <div class="logo">
-              <a class="nav-link" [routerLink]="['/']" aria-current="page">
-                <img src="assets/img/logo/logo.png" alt="">
+              <a class="nav-link" routerLink="/" aria-current="page">
+                <img src="assets/img/logo/logo.png" alt="logo" title="logo">
               </a>
             </div>
           </div>
@@ -19,32 +19,22 @@
                 <nav>
                   <ul id="navigation">
                     <li>
-                      <a routerLink="/" routerLinkActive="active"  aria-current="page">
+                      <a routerLink="/" routerLinkActive="active"  aria-current="acceuil" title="acceuil">
                         Acceuil
                       </a>
                     </li>
-                    <li><a href="department.html">Rendez-vous</a></li>
+                    <li><a routerLink="/rendez-vous" routerLinkActive="active" title="rendez-vous" >Rendez-vous</a></li>
                     <!-- <li><a href="about.html" title="about">A propos</a></li> -->
-                    <li><a href="blog.html">Blog</a>
-                      <ul class="submenu">
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="blog_details.html">Blog Details</a></li>
-                        <li><a href="elements.html">Element</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="blog.html">Compte</a>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#" title="compte">Compte</a>
                       <ul class="submenu">
                         <li><a href="blog.html">tableau de bord</a></li>
                         <li><a href="elements.html">se deconnecter</a></li>
                       </ul>
                     </li>
-                    <li><a href="contact.html">Contact</a></li>
                   </ul>
                 </nav>
               </div>
-              <!-- <div class="header-right-btn f-right d-none d-lg-block ml-30">
-                              <a href="#" class="btn header-btn">01654.066.456</a>
-                          </div> -->
             </div>
           </div>
           <!-- Mobile Menu -->

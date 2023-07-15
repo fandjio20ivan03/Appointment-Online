@@ -10,4 +10,14 @@ class Rendez_vous extends Model
     use HasFactory;
     protected $guarded = [];
     protected $table = 'rendez_vous';
+
+    public function medecin()
+    {
+        return $this->belongsTo(Medecin::class);
+    }
+
+    public function patient()
+    {
+        return $this->belongsTo(Patient::class);
+    }
 }

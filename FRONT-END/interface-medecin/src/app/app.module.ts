@@ -14,7 +14,8 @@ import { FooterComponent } from './composants/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { PageConfirmationComponent } from './composants/page-confirmation/page-confirmation.component';
-
+import { PageRendezVousComponent } from './composants/page-rendez-vous/page-rendez-vous.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,8 @@ import { PageConfirmationComponent } from './composants/page-confirmation/page-c
     PagePlanningComponent,
     PageExceptionComponent,
     FooterComponent,
-    PageConfirmationComponent
+    PageConfirmationComponent,
+    PageRendezVousComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +35,7 @@ import { PageConfirmationComponent } from './composants/page-confirmation/page-c
     CommonModule,
     NgxDatatableModule,
     FormsModule,
+    NgxPaginationModule,
   ],
   exports: [RouterModule],
   providers: [],

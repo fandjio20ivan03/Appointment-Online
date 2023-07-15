@@ -4,5 +4,6 @@ export class Exception {
   heure_debut:any;
   heure_fin:any;
   validite_id:any;
+  medecin_id:any;
 }
 
