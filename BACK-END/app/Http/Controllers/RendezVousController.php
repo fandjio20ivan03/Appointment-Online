@@ -81,8 +81,7 @@ class RendezVousController extends Controller
         $patients = Rendez_vous::get('patient_id');
 
         // verifier si le patient n'a pas encore pris un rendez-vous
-
-        if(!$patients->contains('patient_id', $patient_id)){
+        if (!$patients->contains('patient_id', $patient_id)) {
 
             $heure_debut = $request->input('heure_debut');
             $heure_fin = $request->input('heure_fin');
@@ -97,6 +96,7 @@ class RendezVousController extends Controller
 
             $medecins = [];
 
+            // organiser les rendez-vous en fonction des medecins [medecin => $medecin, rdv_count => $med->count()]
             foreach ($medecinsDisponibles as $med) {
                 $medecin =  $med;
                 $rdv_count = $med->rendez_vous->count();
@@ -107,17 +107,16 @@ class RendezVousController extends Controller
                 ];
             }
 
-            // trier l'emsemble des ces medecins
+            // trier l'ensemble des ces medecins par ordre croissant
             usort($medecins, function ($a, $b) {
                 return $a['rendez_vous_count'] - $b['rendez_vous_count'];
             });
 
-            //medecin choisi
+            //medecin choisi;
             // ici, le medecin choisi sera le premier
             $medecin_choisi = $medecins[0]['medecin'];
 
-
-
+            // creation du rendez-vous
             $res = Rendez_vous::create([
                 'date' => $date,
                 'heure_debut' => $heure_debut,
@@ -129,7 +128,8 @@ class RendezVousController extends Controller
                 'updated_at' => now(),
             ]);
 
-            return response()->json($res, 200);
+            return response()->json(['message' => 'rendez-vous cree avec succes'], 200);
+            
         } else {
 
             return response()->json(['message' => 'vous devez d\'abord honorer le rendez-vous que vous avez déjà pris'], 201);
