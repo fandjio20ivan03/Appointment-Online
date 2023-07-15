@@ -7,6 +7,9 @@ import { PageAcceuilComponent } from './composants/page-acceuil/page-acceuil.com
 import { MenuComponent } from './composants/menu/menu.component';
 import { PageRendezVousComponent } from './composants/page-rendez-vous/page-rendez-vous.component';
 import { HttpClientModule } from '@angular/common/http';
+import { InscriptionPatientComponent } from './composants/inscription-patient/inscription-patient.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginPatientComponent } from './composants/login-patient/login-patient.component';
 
 @NgModule({
   declarations: [
@@ -14,11 +17,15 @@ import { HttpClientModule } from '@angular/common/http';
     PageAcceuilComponent,
     MenuComponent,
     PageRendezVousComponent,
+    InscriptionPatientComponent,
+    LoginPatientComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

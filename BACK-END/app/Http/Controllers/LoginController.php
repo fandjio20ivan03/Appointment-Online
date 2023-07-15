@@ -2,49 +2,49 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\loginRequest;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function login(loginRequest $request)
+    public function login(Request $request)
     {
         // On valide les données du formulaire
-        $request->validate([
+        $validated = $request->validate([
             'login' => 'required',
             'password' => 'required',
         ]);
 
         // On vérifie si les identifiants sont corrects
-        if (Auth::attempt(['login' => $request->login, 'password' => $request->password])) {
+        if (Auth::attempt(['login' => $validated['login'], 'password' => $validated['password']])) {
             $user = Auth()->user();
-            // $token = $user->createToken('Voici_ma_cle_secrete')->plainTextToken;
-            // Si oui, on redirige vers la page d'accueil avec un message de succès
+            $token = $user->createToken('Voici_ma_cle_secrete')->plainTextToken;
+            // On renvoie une réponse JSON avec le message de succès et les données de l'utilisateur
             return response()->json([
                 "status_code"=> 200,
                 "message"=> "l'utilisateur est connecte",
                 "user"=> $user,
-                // "token" => $token
+                "token" => $token
             ]);
-            // return redirect()->route('home')->with('success', "Vous êtes connecté.");
         } else {
-            // Si non, on redirige vers la page précédente avec un message d'erreur
-            // return redirect()->back()->with('error', "Login ou mot de passe incorrect.");
+            // Si non, on renvoie une réponse JSON avec le message d'erreur
             return response()->json([
                 'status_code'=>401,
-                "message"=>"information incorrect"
+                "message"=>"Login ou mot de passe incorrect"
             ]);
         }
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        // On déconnecte l'utilisateur
-        Auth::logout();
+        // On révoque le token d'authentification de l'API
+        $token = $request->user()->currentAccessToken();
+        $token->revoke();
 
-        // On redirige vers la page d'accueil avec un message de succès
-        return redirect()->route('home')->with('success', "Vous êtes déconnecté.");
+        // On renvoie une réponse JSON avec le message de succès
+        return response()->json([
+            "status_code"=> 200,
+            "message"=> "L'utilisateur est déconnecté"
+    ]);
     }
 }

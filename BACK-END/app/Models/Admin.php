@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,6 +13,7 @@ class Admin extends Model
         'adm_ville',
         'adm_dateNais',
         'adm_tel',
+        'adm_email',
         'user_id'
     ];
 
