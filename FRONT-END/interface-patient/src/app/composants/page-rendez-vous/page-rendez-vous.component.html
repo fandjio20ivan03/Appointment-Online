@@ -1,24 +1,76 @@
 <app-menu></app-menu>
 
-  <main>
+<main>
+  <div class="single-slider slider-height align-items-center pt-100">
+    <div class="container">
+      <div class="row" style="margin-right: -47px">
+        <div class="col-xl-7 col-lg-9 col-md-8 col-sm-9 pb-20">
+          <div class="section-tittle section-tittle2 mb-35">
+            <!-- <span>Emploi de temps</span> -->
+            <h2 style="font-size: 30px; display: block ruby;">Prise de rendez-vous</h2>
+          </div>
+        </div>
+        <div class="col" style="font-size: 18px;">
+          <ngx-datatable class="material table-striped table-bordered table-hover table-responsive mb-100"
+            [rows]="schedule" [columns]="columns" [headerHeight]="70" [cssClasses]="'table table-responsive bootstrap'"
+            [reorderable]="false">
+            <ngx-datatable-column name="heures \ jours" prop="hour">
+              <ng-template let-row="row" class="section-tittle" ngx-datatable-cell-template>
+                <p class="text-center">{{ row.hour }}</p>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column *ngFor="let column of columns" [name]="column.name!" [prop]="column.prop!">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <p class="text-center">
+                  <input type="checkbox" (change)="onCheckboxChange($event, row!.hour, column.prop?.toString()!)"
+                    [checked]="row![column.prop!]">
+                </p>
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
 
-    <div class="row">
-      <div class="col-sm-12">
-        <h3>Datatable with checkbox example</h3>
+          <button type="button" class="btn  hero-btn float-right mb-100" data-animation="fadeInLeft" data-delay="0.5s"
+            data-toggle="modal" data-target="#exampleModal">
+            valider <i class="ti-arrow-right"></i>
+          </button>
 
-            <ngx-datatable
-                class="material "
-                [cssClasses]=""
-                [rows]="data"
-                [columns]="columns"
-                [selected]="selectedRows"
-                [ColumnMode]="columnMode"
-                [cellContext]="cellContext"
-                (select)="onClickCheckBox($event)">
 
-            </ngx-datatable>
-
+        </div>
       </div>
     </div>
+  </div>
+</main>
+<div class="home_blog-area section-padding30"></div>
 
-  </main>
+<app-footer></app-footer>
+
+
+
+<!-- Modal -->
+<!-- <div class="modal fade mt-200" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+  <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h3 class="modal-title text-dark" id="exampleModalLabel">Information</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" style="font-size: 25px;">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body pb-20 pt-20 text-dark">
+                  Apres avoir defini votre emploi de temps vous avez la possibilite de definir une exception plus tard
+                  ou maintenant
+                  <br />
+                  Souhaitez-vous definir vos exceptions maintenant ?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                    (click)="chargerCalendrier(1)">Oui <i class="fa-check"></i> </button>
+                  &nbsp;
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="chargerCalendrier(2)">Non
+                    <i class="fab fa-goodreads"></i> </button>
+                </div>
+              </div>
+            </div>
+          </div>
+</div> -->
+
