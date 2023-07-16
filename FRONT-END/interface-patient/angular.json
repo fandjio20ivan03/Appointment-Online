@@ -30,12 +30,16 @@
               "src/assets"
             ],
             "styles": [
+<<<<<<< HEAD
               "src/styles.scss",
               "./node_modules/@swimlane/ngx-datatable/index.css",
               "./node_modules/@swimlane/ngx-datatable/themes/material.scss",
               "./node_modules/@swimlane/ngx-datatable/themes/dark.scss",
               "./node_modules/@swimlane/ngx-datatable/themes/bootstrap.scss",
               "./node_modules/@swimlane/ngx-datatable/assets/icons.css"
+=======
+              "src/styles.scss"
+>>>>>>> 7fb01e93a1842f97cd88727f967e41693aea78a1
             ],
             "scripts": []
           },

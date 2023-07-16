@@ -1,0 +1,217 @@
+<app-menu></app-menu>
+
+
+<div class="container">
+  <div class="card mt-4">
+    <div class="card-header text-white bg-info">
+      S'enregistrer
+    </div>
+
+    <div class="card-body">
+      <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="login">Login</label>
+            <input type="text" id="login" class="form-control" formControlName="login" required>
+            <div *ngIf="formGroup.get('login')?.invalid && formGroup.get('login')?.touched" class="text-danger">
+              <div *ngIf="formGroup.get('pat_nom')?.errors?.['required']">
+                Veillez entrer un Login.
+              </div>
+              <div *ngIf="formGroup.get('pat_nom')?.errors?.['minlength']">
+                Le Login doit faire au moins 3 caractères.
+              </div>
+              <div *ngIf="formGroup.get('pat_nom')?.errors?.['maxlength']">
+                Le Login ne doit pas dépasser 100 caractères.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" class="form-control" formControlName="password" required>
+            <div *ngIf="formGroup.get('password')?.invalid && formGroup.get('password')?.touched" class="text-danger">
+              Mot de passe est requis et doit comporter au moins 5 caractères.
+            </div>
+          </div>
+        </div>
+
+        <input type="hidden" ngValue=0 formControlName="type">
+
+        <!-- Champs spécifiques pour le type Patient -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="pat_nom">Nom</label>
+            <input type="text" id="pat_nom" class="form-control" formControlName="pat_nom" required>
+
+            <div *ngIf="formGroup.get('pat_nom')?.invalid && formGroup.get('pat_nom')?.touched" class="text-danger">
+              <div *ngIf="formGroup.get('pat_nom')?.errors?.['required']">
+                Veillez entrer un nom.
+              </div>
+              <div *ngIf="formGroup.get('pat_nom')?.errors?.['minlength']">
+                Le nom doit faire au moins 3 caractères.
+              </div>
+              <div *ngIf="formGroup.get('pat_nom')?.errors?.['maxlength']">
+                Le nom ne doit pas dépasser 100 caractères.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="pat_prenom">Prénom</label>
+            <input type="text" id="pat_prenom" class="form-control" formControlName="pat_prenom" required>
+            <div *ngIf="formGroup.get('pat_prenom')?.invalid && formGroup.get('pat_prenom')?.touched" class="text-danger">
+              <div *ngIf="formGroup.get('pat_prenom')?.errors?.['required']">
+                Veillez entrer un prénom.
+              </div>
+              <div *ngIf="formGroup.get('pat_prenom')?.errors?.['minlength']">
+                Le prénom doit faire au moins 3 caractères.
+              </div>
+              <div *ngIf="formGroup.get('pat_prenom')?.errors?.['maxlength']">
+                Le prénom ne doit pas dépasser 100 caractères.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="pat_ville">Votre Ville</label>
+            <select id="pat_ville" class="form-select" formControlName="pat_ville" required>
+              <option value="">Choisir votre ville</option>
+              <option value="Douala">Douala</option>
+              <option value="Yaounde">Yaounde</option>
+              <option value="Bamenda">Bamenda</option>
+            </select>
+            <div *ngIf="formGroup.get('pat_ville')?.invalid && formGroup.get('pat_ville')?.touched" class="text-danger">
+              Ville est requise.
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="pat_dateNais">Date de Naissance (jj/mm/aaaa)</label>
+            <input type="text" id="pat_dateNais" class="form-control" formControlName="pat_dateNais" required>
+            <div *ngIf="formGroup.get('pat_dateNais')?.invalid && formGroup.get('pat_dateNais')?.touched" class="text-danger">
+              <div *ngIf="formGroup.get('pat_dateNais')?.errors?.['required']">
+                Veillez entrer une date de naissance.
+              </div>
+              <div *ngIf="formGroup.get('pat_dateNais')?.errors?.['pattern']">
+                Entrer une date valide (jj/mm/aaaa).
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="pat_tel">Numéro de téléphone</label>
+            <input type="tel" id="pat_tel" class="form-control" formControlName="pat_tel">
+            <div *ngIf="formGroup.get('pat_tel')?.invalid && formGroup.get('pat_tel')?.touched" class="text-danger">
+              <div *ngIf="formGroup.get('pat_tel')?.errors?.['required']">
+                Veillez entrer un numéro de téléphone.
+              </div>
+              <div *ngIf="formGroup.get('pat_tel')?.errors?.['invalidPhone']">
+                Numéro de téléphone invalide.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-info text-white" [disabled]="formGroup.invalid">
+            Enregistrer
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- ************************************************************************************* -->
+<!-- <div class="container">
+  <div class="card mt-4">
+    <div class="card-header text-white bg-info">
+      S'enregistrer
+    </div>
+
+    <div class="card-body">
+      <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="pat_nom">Nom</label>
+            <input type="text" id="pat_nom" class="form-control" formControlName="pat_nom" required>
+            <div *ngIf="formGroup.get('pat_nom')?.invalid && formGroup.get('pat_nom')?.touched" class="text-danger">
+              Nom est requis.
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="pat_prenom">Prénom</label>
+            <input type="text" id="pat_prenom" class="form-control" formControlName="pat_prenom" required>
+            <div *ngIf="formGroup.get('pat_prenom')?.invalid && formGroup.get('pat_prenom')?.touched" class="text-danger">
+              Prénom est requis.
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="pat_dateNais">Date de Naissance</label>
+            <input type="date" id="pat_dateNais" class="form-control" formControlName="pat_dateNais" required>
+            <div *ngIf="formGroup.get('pat_dateNais')?.invalid && formGroup.get('pat_dateNais')?.touched" class="text-danger">
+              Date de naissance est requise.
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="pat_tel">Numéro de téléphone</label>
+            <input type="tel" id="pat_tel" class="form-control" formControlName="pat_tel" required>
+            <div *ngIf="formGroup.get('pat_tel')?.invalid && formGroup.get('pat_tel')?.touched" class="text-danger">
+              Numéro de téléphone est requis.
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" class="form-control" formControlName="password" required>
+            <div *ngIf="formGroup.get('password')?.invalid && formGroup.get('password')?.touched" class="text-danger">
+              Mot de passe est requis.
+            </div>
+          </div>
+
+
+          <div class="col-md-6 mb-3">
+            <label for="login">Login</label>
+            <input type="text" id="login" class="form-control" formControlName="login" required>
+            <div *ngIf="formGroup.get('login')?.invalid && formGroup.get('login')?.touched" class="text-danger">
+              Login est requis.
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-6 mb-3">
+            <label for="pat_ville">Votre Ville</label>
+            <select id="pat_ville" class="form-select" formControlName="pat_ville" required>
+              <option value="">Choisir votre ville</option>
+              <option value="Douala">Douala</option>
+              <option value="Yaounde">Yaounde</option>
+              <option value="Bamenda">Bamenda</option>
+            </select>
+            <div *ngIf="formGroup.get('pat_ville')?.invalid && formGroup.get('pat_ville')?.touched" class="text-danger">
+              Ville est requise.
+            </div>
+          </div>
+        </div>
+
+        <input type="hidden" ngValue=0 formControlName="type">
+
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-info text-white" [disabled]="formGroup.invalid">
+            Enregistrer
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div> -->

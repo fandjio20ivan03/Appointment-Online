@@ -11,6 +11,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FormsModule } from '@angular/forms';
 
+import { InscriptionPatientComponent } from './composants/inscription-patient/inscription-patient.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoginPatientComponent } from './composants/login-patient/login-patient.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +21,8 @@ import { FormsModule } from '@angular/forms';
     PageAcceuilComponent,
     MenuComponent,
     PageRendezVousComponent,
+    InscriptionPatientComponent,
+    LoginPatientComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,6 +30,8 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     NgxDatatableModule,
     FormsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
