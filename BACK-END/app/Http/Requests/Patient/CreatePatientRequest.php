@@ -29,10 +29,7 @@ class   CreatePatientRequest extends FormRequest
 
             'pat_nom' => 'required|string|max:100',
             'pat_prenom' => 'required|string|max:100',
-<<<<<<< HEAD
             'pat_ville' => ['required', 'string', new CameroonCity],
-=======
->>>>>>> 71a30cf0c5acd3f0288301dee84617c767c31c2e
             'pat_dateNais' => 'required|date|before:today',
             'pat_email' => 'required|email|unique:patients,pat_email',
             'pat_tel' => 'required|string'

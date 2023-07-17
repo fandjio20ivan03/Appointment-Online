@@ -237,9 +237,9 @@ export class PageRendezVousComponent implements OnInit {
       console.log('bonne insertion');
     }
 
-    console.log(this.calendrier_data);
+    // console.log(this.calendrier_data);
     // insertDataRendezVous()
-    console.log(this.calendrier_data_jour);
+    // console.log(this.calendrier_data_jour);
   }
 
 }

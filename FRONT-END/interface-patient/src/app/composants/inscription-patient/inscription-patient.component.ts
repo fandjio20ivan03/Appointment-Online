@@ -24,7 +24,8 @@ export class InscriptionPatientComponent implements OnInit {
       pat_nom: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
       pat_prenom: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
       pat_ville: ['', [Validators.required]],
-      pat_dateNais: ['', [Validators.required, Validators.pattern('^(0[1-9]|1[0-9]|2[0-9]|3[0-1])/(0[1-9]|1[0-2])/\\d{4}$')]],
+      pat_dateNais: ['', [Validators.required, Validators.pattern('^([0-9]{2})/([0-9]{2})/([0-9]{4})$')]],
+      // pat_dateNais: ['', [Validators.required, Validators.pattern('^(0[1-9]|1[0-9]|2[0-9]|3[0-1])/(0[1-9]|1[0-2])/\\d{4}$')]],
       pat_tel: ['', [Validators.required, this.phoneValidator]],
       type: new FormControl(0),
 
@@ -51,17 +52,23 @@ export class InscriptionPatientComponent implements OnInit {
 
 
   phoneValidator(control: AbstractControl): ValidationErrors | null {
+    console.log(control);
     const value = control.value;
+    console.log(value);
     if (!value) return null;
+    // const regex1 = /^(\+2376|(\+237)?[2378]\d|(\+237)?5[1234]\d|(\+237)?9[0-9]\d|\(?6\d{8})$/;
+    const regex2 = /^(\+2376|(\+237)?[2378]\d|(\+237)?5[1234]\d|(\+237)?9[0-9]\d)\d{6}$/;
+    console.log(regex2 == value);
 
-    const validLength = value.length === 9;
-    const validStart = value.startsWith('67') || value.startsWith('69') || value.startsWith('65');
-    const validNextDigit = !value.startsWith('65') || ['3', '4'].includes(value[2]);
+    // const validLength = value.length === 9;
+    // const validStart = value.startsWith('67') || value.startsWith('69') || value.startsWith('65');
+    // const validNextDigit = !value.startsWith('65') || ['0', '1', '2', '3', '4'].includes(value[2]);
 
-    if (validLength && validStart && validNextDigit) return null;
+    if (regex2) return null;
 
     return { invalidPhone: true };
   }
+
 }
 
 
@@ -109,6 +116,10 @@ export class InscriptionPatientComponent implements OnInit {
 //       // type: [0]
 //     });
 //   }
+
+
+
+
 
 //   // On soumet le formulaire
 //   public onSubmit() {

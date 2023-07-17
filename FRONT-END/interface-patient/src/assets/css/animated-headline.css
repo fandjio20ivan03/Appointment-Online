@@ -1,4 +1,4 @@
-/* -------------------------------- 
+/* --------------------------------
 
 Primary style
 
@@ -15,7 +15,7 @@ html * {
 }
 
 html {
-  font-size: 62.5%;
+  font-size: medium;
 }
 
 
@@ -106,9 +106,9 @@ a {
   opacity: 1;
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-xrotate-1 
+xrotate-1
 
 -------------------------------- */
 .cd-headline.rotate-1 .cd-words-wrapper {
@@ -277,9 +277,9 @@ xrotate-1
     opacity: 0;
   }
 }
-/* -------------------------------- 
+/* --------------------------------
 
-xtype 
+xtype
 
 -------------------------------- */
 .cd-headline.type .cd-words-wrapper {
@@ -385,9 +385,9 @@ xtype
     opacity: 0;
   }
 }
-/* -------------------------------- 
+/* --------------------------------
 
-xrotate-2 
+xrotate-2
 
 -------------------------------- */
 .cd-headline.rotate-2 .cd-words-wrapper {
@@ -565,9 +565,9 @@ xrotate-2
     transform: translateZ(-20px) rotateX(-90deg);
   }
 }
-/* -------------------------------- 
+/* --------------------------------
 
-xloading-bar 
+xloading-bar
 
 -------------------------------- */
 .cd-headline.loading-bar span {
@@ -586,7 +586,7 @@ xloading-bar
   bottom: 0;
   height: 3px;
   width: 0;
-  background: #0096a7;
+  background: #0096a7!important;
   z-index: 2;
   -webkit-transition: width 0.3s -0.1s;
   -moz-transition: width 0.3s -0.1s;
@@ -610,9 +610,9 @@ xloading-bar
   top: 0;
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-xslide 
+xslide
 
 -------------------------------- */
 .cd-headline.slide span {
@@ -748,9 +748,9 @@ xslide
     transform: translateY(100%);
   }
 }
-/* -------------------------------- 
+/* --------------------------------
 
-xclip 
+xclip
 
 -------------------------------- */
 .cd-headline.clip span {
@@ -778,9 +778,9 @@ xclip
   opacity: 1;
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-xzoom 
+xzoom
 
 -------------------------------- */
 .cd-headline.zoom .cd-words-wrapper {
@@ -879,9 +879,9 @@ xzoom
     transform: translateZ(-100px);
   }
 }
-/* -------------------------------- 
+/* --------------------------------
 
-xrotate-3 
+xrotate-3
 
 -------------------------------- */
 .cd-headline.rotate-3 .cd-words-wrapper {
@@ -997,9 +997,9 @@ xrotate-3
     transform: rotateY(-180deg);
   }
 }
-/* -------------------------------- 
+/* --------------------------------
 
-xscale 
+xscale
 
 -------------------------------- */
 .cd-headline.scale b {
@@ -1134,9 +1134,9 @@ xscale
     opacity: 0;
   }
 }
-/* -------------------------------- 
+/* --------------------------------
 
-xpush 
+xpush
 
 -------------------------------- */
 .cd-headline.push b {
